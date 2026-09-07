@@ -1,0 +1,20 @@
+{
+  "_nota": "Posizioni sul pavimento della base, in mm nel modello (x = larghezza 0..222 · y = profondita' 0..252,77 · y=0 e' il DAVANTI). Trovate cercando sul modello: vassoi e colonnine come ostacoli, le viti dei fianchi come ostacoli LOCALI (entrano 14 mm a z=9, tre punti per lato), 3 mm di bordo e 2 di aria attorno.",
+  "deciso": "2026-09-03",
+  "alimentatore_12v": {
+    "x0": 17,
+    "y0": 5,
+    "x1": 74,
+    "y1": 90,
+    "alt": 28,
+    "misura": "85 x 57 x 28, misurati da Seba"
+  },
+  "scheda_foc": {
+    "x0": 165,
+    "y0": 44,
+    "x1": 211,
+    "y1": 106,
+    "alt": 30,
+    "misura": "56,3 x 39,7 di catalogo V3.2 + 3 mm per lato — DA RIMISURARE all'arrivo"
+  }
+}

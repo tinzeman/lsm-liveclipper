@@ -1,0 +1,73 @@
+{
+  "_nota": "SCHEDA UFFICIALE del costruttore, presa il 03/09/2026 dalla pagina iFlight del GM3506 CON ENCODER (shop.iflight.com/...-w-as5048a-encoder-pro1155). NON da rivenditori: le prime due righe che avevo dato a Seba venivano da un'inserzione Amazon ed erano SBAGLIATE. Quello che manca qui — la posizione dei fori di fissaggio e quale parte gira — NON e' pubblicato: si misura sul pezzo.",
+  "modello": "iPower GM3506 con encoder AS5048A",
+  "fonte": "shop.iflight.com, scheda del prodotto con encoder",
+  "letto_il": "2026-09-03",
+  "corpo": {
+    "diametro": 40.0,
+    "toll": 0.05,
+    "altezza": 25.8,
+    "altezza_toll": 0.2,
+    "nota_altezza": "25,8 CON la scatola dell'encoder. I 17,8 che avevo scritto sono del motore NUDO, da un rivenditore."
+  },
+  "albero_cavo": {
+    "esterno": 12.0,
+    "toll_esterno": "-0.008/-0.012",
+    "interno": 8.6,
+    "toll_interno": "+0.05/0"
+  },
+  "elettrico": {
+    "resistenza_ohm": 5.6,
+    "toll": "±5%",
+    "a_vuoto_A": 0.17,
+    "a_vuoto_V": 16,
+    "sotto_carico_A": 1.0,
+    "sotto_carico_V": 12,
+    "potenza_max_W": 25
+  },
+  "coppia": {
+    "g_cm_min": 600,
+    "g_cm_max": 1000,
+    "Nm_min": 0.059,
+    "Nm_max": 0.098,
+    "a": "1 A e 12 V, dalla scheda del costruttore",
+    "nota": "I 1,5 kg/cm (0,147 Nm) che avevo dato a Seba venivano da un'inserzione, NON dal costruttore. Il valore vero e' 600-1000 g/cm, cioe' meno della meta'."
+  },
+  "altro": {
+    "config": "24N/22P",
+    "peso_g": 72,
+    "cavo_mm": 610,
+    "awg": 24,
+    "connettore": "dupont 2,5 mm",
+    "eccentricita_rotore_max": 0.1,
+    "verso": "orario (estensione albero)"
+  },
+  "NON_SO": [
+    "l'altezza del guscio dell'encoder sotto la base: 25,8 totali - 17,8 nudo = 8,0 STIMATI. Il supporto e' quotato su questo: da confermare col calibro."
+  ],
+  "fissaggio": {
+    "_fonte": "DUE FONTI INDIPENDENTI, e concordano. 1) disegno quotato nelle immagini dell'inserzione AliExpress 1005009780095335. 2) DISEGNO DI FABBRICA iFlight (cartiglio IFLIGHT INNOVATION TECHNOLOGY CO.,LTD, tavola 3506-03, V1.0, 2018.11.26), pubblicato su grabcad.com/library/iflight-ipower-gbm3506-130t-with-encoder-1. Letti e ingranditi il 03/09/2026.",
+    "rotore_sopra": {
+      "viti": 4,
+      "filetto": "M2.5",
+      "cerchio_pcd": 20.0,
+      "a": "0/90/180/270 gradi",
+      "uso": "ci si avvita LA RUOTA DEL JOG"
+    },
+    "statore_sotto": {
+      "viti": 4,
+      "filetto": "M2.5",
+      "cerchio_pcd": 34.0,
+      "a": "45/135/225/315 gradi",
+      "uso": "ci si avvita IL SUPPORTO"
+    },
+    "foro_centrale": 8.6,
+    "altezza_nuda": 17.8,
+    "nota": "Niente perno e niente grano: la ruota si fissa con 4 viti al rotore. Era questo il difetto dei pezzi 12 e 13, disegnati per l'alberino Ø6 dell'encoder ottico.",
+    "sporgenza_rotore": {
+      "valore": 0.5,
+      "toll": 0.1,
+      "nota": "gradino sulla faccia del rotore, dal disegno di fabbrica. La ruota ci si appoggia sopra; nel mozzo c'e' una sede Ø12,4 profonda 1,5 che si centra sull'albero cavo Ø12 e non arriva mai in fondo."
+    }
+  }
+}
