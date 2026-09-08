@@ -8,7 +8,7 @@
     "toll": 0.05,
     "altezza": 25.8,
     "altezza_toll": 0.2,
-    "nota_altezza": "25,8 CON la scatola dell'encoder. I 17,8 che avevo scritto sono del motore NUDO, da un rivenditore."
+    "nota_altezza": "25,8 CON l'alloggiamento dell'encoder (scheda venditore 08/09: 25,8 ± 0,2). Il motore nudo e' 17,8-18."
   },
   "albero_cavo": {
     "esterno": 12.0,
@@ -43,7 +43,8 @@
     "verso": "orario (estensione albero)"
   },
   "NON_SO": [
-    "l'altezza del guscio dell'encoder sotto la base: 25,8 totali - 17,8 nudo = 8,0 STIMATI. Il supporto e' quotato su questo: da confermare col calibro."
+    "il PASSO dei 4 fori sul fondo dell'alloggiamento: assunto 34 come lo statore (i distanziali devono allinearsi ai filetti dello statore). Da confermare col calibro.",
+    "la lunghezza giusta delle M2,5 del supporto: piatto 4 + fondo dell'alloggiamento + filetto. Si misura."
   ],
   "fissaggio": {
     "_fonte": "DUE FONTI INDIPENDENTI, e concordano. 1) disegno quotato nelle immagini dell'inserzione AliExpress 1005009780095335. 2) DISEGNO DI FABBRICA iFlight (cartiglio IFLIGHT INNOVATION TECHNOLOGY CO.,LTD, tavola 3506-03, V1.0, 2018.11.26), pubblicato su grabcad.com/library/iflight-ipower-gbm3506-130t-with-encoder-1. Letti e ingranditi il 03/09/2026.",
@@ -69,5 +70,13 @@
       "toll": 0.1,
       "nota": "gradino sulla faccia del rotore, dal disegno di fabbrica. La ruota ci si appoggia sopra; nel mozzo c'e' una sede Ø12,4 profonda 1,5 che si centra sull'albero cavo Ø12 e non arriva mai in fondo."
     }
+  },
+  "guscio_encoder": {
+    "diametro": 40.0,
+    "altezza": 8.0,
+    "fori_fondo_pcd": 34.0,
+    "fori_fondo_n": 4,
+    "_fonte": "foto dell'inserzione AliExpress 1005009325222067, viste l'08/09/2026: l'alloggiamento (nero, in alluminio) ha LO STESSO diametro del motore, fianco a fianco nelle foto; il motore nudo e' quotato 18 mm nella foto g5, quindi l'alloggiamento fa 25,8 - 18 = 7,8 (arrotondato a 8). Sul fondo 4 fori a 45 gradi vicino al bordo; dentro, 4 distanziali filettati in ottone (foto g9).",
+    "_da_confermare_col_calibro": "diametro (40?), altezza (7,8?), distanza fra due fori opposti sul fondo (34 come lo statore?), fori filettati o passanti -> lunghezza delle M2,5"
   }
 }
