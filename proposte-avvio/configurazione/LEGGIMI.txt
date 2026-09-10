@@ -1,0 +1,32 @@
+PROPOSTE DI CONFIGURAZIONE LIVE / CATALOG
+
+Apri live.html oppure catalog.html.
+Campi ricavati da controllo/pagina.html in produzione.
+LIVE: nome, destinazione, codec, anello, qualità/bitrate, camere, stima peso.
+CATALOG: nome, girato, destinazione, ripresa lavori e rimozione simulata.
+Nomi e metadati dei lavori sono esempi inventati, etichettati nella pagina.
+Nessun dato vero viene letto. Nessuna richiesta al server LiveClipper.
+Scegliere un file legge solo il nome, senza caricarne il contenuto.
+L’autonomia e il segnale hardware non sono simulati come dati reali.
+I valori iniziali sono dimostrativi; nessuna impostazione viene salvata.
+
+Nuove varianti compatte, entrambe le modalità:
+- live-essenziale.html / catalog-essenziale.html
+- live-orizzonte.html / catalog-orizzonte.html
+- live-console.html / catalog-console.html
+Menu codec e camere integrati, navigabili con frecce, Invio ed Escape.
+Destinazioni dimostrative in finestra coordinata.
+Il selettore di file del computer resta una finestra del sistema operativo.
+
+Elenchi concreti: 15 esempi iniziali in LIVE e CATALOG.
+Selettore 2 / 10 / 15 lavori; preferenza mantenuta tra modalità e varianti.
+Scorrimento indipendente della lista; ripresa e rimozione restano simulate.
+
+Confronto corrente: Orizzonte, varianti Ordinata / Firma / Fascia, LIVE e CATALOG.
+Entrambe le modalità includono anteprima del lavoro aperto: sessione per LIVE, progetto per CATALOG.
+
+Essenziale: sfondo uniforme oppure sfumato studio, per LIVE e CATALOG.
+
+Ordinata senza logo: sfondi Ardesia, Antracite sfumato e Blu notte, LIVE e CATALOG.
+
+Ordinata / Antracite sfumato: gerarchia tipografica aggiornata, nomi lavori 15px bold, valori 16px, etichette 14px bold, metadati 12px con cifre tabulari; menu e dialoghi coordinati.

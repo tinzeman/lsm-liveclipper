@@ -1,0 +1,953 @@
+<!doctype html>
+<!-- ═══════════════════════════════════════════════════════════════════
+     LA FINESTRA COMANDI DELLA CODA (T3) — si apre a piacimento dalla
+     catalogazione (⧉ COMANDI). Parla con la pagina principale via
+     BroadcastChannel: il lettore vive DI LA'; chiudere questa finestra
+     non tocca l'onda. Tastiera: T=take · 1/2/3=quando · ESC=annulla ·
+     spazio=onda/ferma. (Erede della finestra vecchia: rundown +
+     anteprima/QUANDO/TAKE + CODA IN ONDA, «sempre a vista, non schede
+     da aprire: in regia si guardano, non si cercano».)
+     ═══════════════════════════════════════════════════════════════════ -->
+<html lang="it"><head><meta charset="utf-8"><script src="seba-multicam.js"></script><script src="demo-backend.js"></script>
+<title>PLAYOUT · coda</title>
+<style>
+/* ═══ IBM PLEX MONO, dal disco (2/9): lo stesso carattere delle colonne.
+   La pagina sta in /microtipografia/integrated-console.html, quindi «font/…» diventa /font/…, servito
+   da controllo.py. Al vivo non c'e' rete: niente da fuori. ═══ */
+@font-face { font-family:"IBM Plex Mono"; font-weight:300; font-display:block;
+             src:url("font/IBMPlexMono-Light.woff2") format("woff2") }
+@font-face { font-family:"IBM Plex Mono"; font-weight:400; font-display:block;
+             src:url("font/IBMPlexMono-Regular.woff2") format("woff2") }
+@font-face { font-family:"IBM Plex Mono"; font-weight:600; font-display:block;
+             src:url("font/IBMPlexMono-SemiBold.woff2") format("woff2") }
+  :root { --fondo:#0d1117; --sfondo:#161b22; --riga:#30363d; --testo:#e6edf3;
+          --tenue:#8b949e; --viola:#a78bfa; --verde:#3fb950; --giallo:#d29922;
+          --rosso:#f85149; }
+  * { box-sizing:border-box; margin:0 }
+  body { background:var(--fondo); color:var(--testo);
+         font:13px "IBM Plex Mono",ui-monospace,monospace; height:100vh;
+         display:grid; grid-template-rows:1fr;
+         /* le colonne di LETTURA si prendono tutto lo spazio (Seba: piu'
+            larghe possibile); il centro e' bottoniera, gli basta il minimo */
+         grid-template-columns:1fr 300px 1fr 58px;
+         gap:10px; padding:10px }
+  /* ── LA LEVA: la STESSA della pagina di catalogazione (Seba: «deve
+     essere come nella finestra»). Stesso gesto, stesso aspetto, stesso
+     significato: 100% in alto = velocita' reale, 0 = fermo immagine. ── */
+  /* nessun riquadro attorno: quello della leva basta e avanza (Seba) */
+  #leva { display:flex; flex-direction:column; align-items:center;
+          min-height:0; overflow:hidden }
+  .leva { display:flex; flex-direction:column; align-items:center; gap:8px;
+          flex:1; width:100%; padding:10px 0 }     /* nuda e stretta */
+  .leva .val { font:600 15px "IBM Plex Mono",ui-monospace,monospace; color:var(--testo) }
+  .leva .val.fermo { color:var(--tenue) }
+  .leva .eti { font:10px "IBM Plex Mono",ui-monospace,monospace; color:var(--tenue) }
+  .leva input[type=range] {
+    -webkit-appearance:none; appearance:none; writing-mode:vertical-lr;
+    direction:rtl; width:34px; flex:1; background:transparent; accent-color:var(--viola) }
+  .leva input[type=range]::-webkit-slider-runnable-track {
+    width:14px; border-radius:7px;
+    background:linear-gradient(0deg,
+      rgba(var(--violaRGB),.9) 0 var(--p, 100%), #26323a var(--p, 100%) 100%) }
+  .leva input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance:none; width:34px; height:18px; border-radius:5px;
+    background:var(--testo); border:1px solid #000; margin-left:-10px;
+    box-shadow:0 1px 4px rgba(0,0,0,.6) }
+  /* la testata non si mostra (Seba: «info inutili, guadagno spazio») —
+     resta nel DOM perche' #stato/#prog li scrive la macchina */
+  /* ⚠️ NASCOSTA DI SERIE, MA NON QUANDO HA QUALCOSA DA DIRE — fronte 3 del
+     secondo audit: «la consolle scollegata scrive la frase giusta dentro
+     #testa, che e' display:none». Cioe' il messaggio piu' importante che
+     questa finestra possa mostrare — «non sono collegata» — era l'unico che
+     non si poteva leggere. La classe .parla la fa comparire. */
+  #testa { display:none }
+  /* ⚠️ E QUANDO PARLA NON DEVE SFASCIARE LA CONSOLLE. Il corpo e' una griglia
+     di QUATTRO colonne con cinque figli dentro: #testa, le tre zone e la
+     leva. Nascosto, i conti tornano. Appena compariva si prendeva la prima
+     colonna, le tre zone slittavano di uno e la leva finiva a capo, larga
+     mezza pagina — Seba, 30/8: «la schermata cambia, cosa cazzo e' questa
+     cosa?». Il messaggio non deve stare NELLA griglia: e' un avviso di
+     passaggio, e va SOPRA, come una fascia. */
+  #testa.parla { display:flex; gap:8px; align-items:center;
+                 position:fixed; top:0; left:0; right:0; z-index:60;
+                 background:#3a1414; border-bottom:1px solid var(--rosso);
+                 padding:5px 8px; font-size:11px }
+  #testa b { color:var(--viola); letter-spacing:.08em }
+  #stato { color:var(--tenue); margin-left:auto }
+  /* ── il timecode di regia: LED da rack col tally (scelto guardando il
+     mockup design/playout_attrezzi.html, 3/9) ── */
+  #tcRegia { background:#07090c; border:1px solid #1b2229; border-radius:9px; overflow:hidden;
+             margin:-10px -10px 10px; font-family:"Courier New",Courier,monospace }
+  #tcTally { height:6px; background:#2a323a; transition:background 120ms ease }
+  .tcdentro { padding:11px 9px 9px; text-align:center }
+  #tcFine { font:400 46px "Courier New",Courier,monospace; line-height:1; letter-spacing:2px;
+            white-space:nowrap; color:#ffb000; text-shadow:0 0 14px rgba(255,176,0,.45);
+            transition:color 120ms ease }
+  #tcFine i { font-style:normal; opacity:.55 }   /* i frame piu' spenti dei secondi */
+  .tccelle { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:11px }
+  .tccella { border:1px solid #1b2229; border-radius:6px; padding:5px 7px }
+  .tccella u { display:block; text-decoration:none; font:600 8.5px "IBM Plex Mono",ui-monospace,monospace;
+               letter-spacing:.2em; color:#4a5560 }
+  .tccella b { font:400 17px "Courier New",Courier,monospace; color:#ffb000;
+               text-shadow:0 0 8px rgba(255,176,0,.35) }
+  #tcDopo { margin-top:8px; font-size:11.5px; letter-spacing:.06em; color:#6e7681;
+            white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+  #tcRegia.spento #tcFine, #tcRegia.spento .tccella b { color:#3a3128; text-shadow:none }
+  #tcRegia.canna  #tcTally { background:var(--viola) }
+  #tcRegia.pronta #tcTally { background:var(--giallo) }
+  #tcRegia.onda   #tcTally { background:var(--verde) }
+  #tcRegia.corta  #tcTally { background:var(--rosso) }
+  #tcRegia.corta  #tcFine  { color:#ff5a4e; text-shadow:0 0 14px rgba(248,81,73,.5) }
+  /* ⚠️ SAVE E CLEAR RESTANO FERMI (operatore, 4/9): stanno dopo la lista, e a
+     ogni voce accodata scendevano di 32 px — piu' dell'altezza del bottone.
+     Con 14 voci erano sotto il bordo della finestra, e due clic su coordinate
+     buone di dieci secondi prima non svuotavano niente. Adesso la lista scorre
+     e il fondo resta. */
+  #codaz { display:flex; flex-direction:column }
+  #codaz #cdLista { flex:1 1 auto; min-height:0; overflow-y:auto }
+  #codaz #cdFondo { flex:0 0 auto; margin-top:8px }
+  .zona { background:var(--sfondo); border:1px solid var(--riga);
+          border-radius:10px; padding:10px; overflow:auto; min-height:0 }
+  /* ⚠️ DUE MODI DI MOSTRARSI, STESSA PAGINA (Seba, 3/9: «allunghiamo la colonna
+     di sinistra su tutta l'altezza»). Nel playout questa consolle vive in due
+     riquadri: uno alto a sinistra che mostra SOLO il rundown (clip, playlist,
+     ⚡ AI) e uno in basso con tutto il resto. Si nasconde con la CSS e non si
+     smonta il DOM: il codice continua a scrivere in #rdLista e in #cdLista
+     senza sapere in quale dei due riquadri sta, e i gesti restano quelli. */
+  body.solo-rundown { grid-template-columns:1fr }
+  body.solo-rundown #centro, body.solo-rundown #codaz, body.solo-rundown #leva { display:none }
+  /* ⚠️ LA COLONNA DEI COMANDI E' PIU' LARGA QUI (Seba, 3/9: «e' troppo
+     stretta»). Nella striscia bassa il rundown non c'e' piu', e i 300 px
+     pensati per una pagina a quattro colonne stringevano TAKE e i tre QUANDO
+     senza motivo: lo spazio guadagnato lo prende chi ci lavora sopra. */
+  body.senza-rundown { grid-template-columns:400px 1fr 58px }
+  body.senza-rundown #rundown { display:none }
+  h3 { font-size:11px; letter-spacing:.12em; color:var(--tenue); margin:0 0 8px }
+  /* ── rundown ── */
+  #tab { display:flex; gap:6px; margin-bottom:8px }
+  #tab span { padding:3px 10px; border:1px solid var(--riga); border-radius:6px;
+              cursor:pointer; color:var(--tenue) }
+  #tab span.on { color:var(--testo); border-color:var(--viola) }
+  .rd { display:flex; align-items:center; gap:8px; padding:6px 8px;
+        border:1px solid var(--riga); border-left:3px solid var(--viola);
+        border-radius:7px; margin-bottom:6px; cursor:pointer }
+  .rd:hover { background:#1b2130 }
+  .rd.cue { border-color:var(--giallo); background:#2a2410 }
+  .rd .n { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+  .rd .d { color:var(--tenue); font-size:11px }
+  /* ⚠️ GLI ATTREZZI AL PASSAGGIO, COME NELLE COLONNE DELLA PAGINA (Seba, 3/9).
+     Quattro pastiglie: i tre momenti piu' l'accodamento. Al passaggio prendono
+     il posto della durata, come in casa. E sulla riga IN CANNA restano accese
+     anche a mouse fermo: li' non sono un attrezzo di passaggio, sono una
+     domanda aperta — «questa quando?» — e una domanda non sparisce perche' hai
+     mosso il mouse. */
+  /* ⚠️ «+ CODA» RESTA SEMPRE A VISTA (regola di Seba: «in regia si guarda, non
+     si cerca»): e' una pastiglia normale della riga. I TRE MOMENTI invece
+     compaiono al passaggio e PRENDONO IL POSTO della durata — come gli
+     attrezzi nelle colonne della pagina. Si nascondono con `display`, non con
+     l'opacita': cosi' a riposo non occupano spazio e il nome si prende tutto.
+     (Il primo tentativo li teneva sospesi sopra la riga: coprivano la durata
+     e l'opacita' del gruppo schiacciava quella del «+ CODA».) */
+  .rd .rdatt { display:none; gap:4px; flex:0 0 auto }
+  .rd:hover .rdatt, .rd.cue .rdatt { display:flex }
+  .rd:hover .d, .rd.cue .d { display:none }
+  .rd .rdatt b { font:600 9.5px "IBM Plex Mono",ui-monospace,monospace; letter-spacing:.04em;
+                 color:var(--tenue); border:1px solid var(--riga); background:var(--fondo);
+                 border-radius:5px; padding:4px 7px; white-space:nowrap; cursor:pointer }
+  .rd .rdatt b:hover { color:var(--viola); border-color:var(--viola); background:#203730 }
+  .rd .rdatt b.ora:hover  { color:var(--rosso); border-color:var(--rosso); background:#3a2a24 }
+  .rd .rdatt b.piu:hover  { color:var(--verde); border-color:var(--verde); background:#16302a }
+  .vuoto { color:var(--tenue); padding:8px 2px }
+  /* ── centro: anteprima + take ── */
+  #centro { display:flex; flex-direction:column; gap:10px }
+  #prv { border:1px dashed var(--riga); border-radius:8px; padding:6px 10px }
+  #prv.armata { border-color:var(--giallo) }
+  #prv .chi { font-weight:600 }
+  #prv .come { color:var(--tenue); font-size:11px; margin-top:4px }
+  /* ⚠️ I TRE QUANDO NON SI VEDONO PIU' (Seba, 3/9): il momento si sceglie sulla
+     riga, dove stai gia' guardando. Restano nel DOM — MAIUSC+1/2/3 e la
+     preselezione del tasto T continuano a funzionare — ma non occupano piu'
+     spazio nella bottoniera. ⚠️ La riga va spenta QUI e non piu' in alto: a
+     parita' di peso vince l'ultima regola del foglio, e una `display:none`
+     scritta prima perdeva contro questa. */
+  #quando { display:none; gap:6px; margin:2px 0 }
+  #quando span { flex:1; text-align:center; padding:7px 0; border:1px solid var(--riga);
+                 border-radius:7px; cursor:pointer; color:var(--tenue);
+                 letter-spacing:.06em }
+  #quando span.on { color:var(--testo); border-color:var(--viola); background:#203730 }
+  #tTake { padding:16px 0; text-align:center; font-size:16px; font-weight:700;
+           letter-spacing:.15em; border:1px solid var(--viola); border-radius:9px;
+           background:#1b1630; cursor:pointer }
+  #tTake:hover { background:#241c42 }
+  #tTake.conto { border-color:var(--giallo); color:var(--giallo) }
+  #tAnnulla { text-align:center; padding:7px 0; border:1px solid var(--riga);
+              border-radius:7px; color:var(--tenue); cursor:pointer }
+  #tAnnulla:hover { color:var(--rosso); border-color:var(--rosso) }
+  #tOnda { margin-top:auto; padding:13px 0; text-align:center; font-weight:700;
+           letter-spacing:.12em; border:1px solid var(--verde); border-radius:9px;
+           color:var(--verde); cursor:pointer }
+  #tOnda.ferma { border-color:var(--rosso); color:var(--rosso) }
+  #lavori { color:var(--giallo); font-size:11px; min-height:14px }
+  /* ── IL BANCO DELLE ⚡, ANCHE QUI. In playout la colonna delle clip sta
+     sotto il telo nero: senza questo, entrando in consolle la fila delle
+     macinate diventava invisibile proprio mentre girano da sole
+     (Seba, 30/8). Qui si LEGGE e basta — la ✕ sta nella colonna, fuori dal
+     playout: durante una messa in onda un clic di troppo non deve poter
+     annullare un lavoro. */
+  #smFila { border:1px solid rgba(var(--violaRGB),.32); border-radius:8px;
+            background:rgba(var(--violaRGB),.07); padding:6px 8px 5px;
+            margin-bottom:8px }
+  #smFila .t { font-size:9px; letter-spacing:.10em; color:var(--viola);
+               text-transform:uppercase; margin-bottom:4px }
+  #smFila .r { display:flex; align-items:center; gap:6px; font-size:11px;
+               padding:1px 0; min-width:0 }
+  #smFila .r b { font-weight:500; overflow:hidden; text-overflow:ellipsis;
+                 white-space:nowrap; max-width:46% }
+  #smFila .r i { font-style:normal; color:var(--rosa); font-size:10px }
+  #smFila .r em { font-style:normal; color:var(--tenue); font-size:10px;
+                  margin-left:auto; flex:0 0 auto }
+  #smFila .r.ora em { color:var(--viola) }
+  #smFila .b { flex:1 1 auto; min-width:20px; height:3px; border-radius:2px;
+               background:#0d1117; overflow:hidden }
+  #smFila .b u { display:block; height:100%; background:var(--viola);
+                 text-decoration:none; transition:width .4s }
+  #smFila .f { font:10px "IBM Plex Mono",ui-monospace,monospace; color:var(--tenue);
+               overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+               margin:1px 0 2px }
+  /* ── coda in onda ── */
+  .cq { display:flex; gap:8px; padding:5px 7px; border-radius:6px;
+        border-left:3px solid transparent; margin-bottom:4px }
+  .cq .n { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+  .cq .d { color:var(--tenue); font-size:11px }
+  .cq .att { color:var(--tenue); opacity:.5; padding:0 3px; border-radius:4px;
+             font-size:11px; cursor:pointer; flex:0 0 auto }
+  .cq:hover .att { opacity:1 }
+  .cq .att:hover { color:var(--testo); background:#2a2932 }
+  .cq .att.via:hover { color:var(--rosso); background:#3a2a24 }
+  .cq.passata { color:var(--tenue); opacity:.55 }
+  .cq.inonda { border-left-color:var(--verde); background:#16302a; color:var(--verde) }
+  .cq.accodata { border-left-color:var(--viola) }
+  .cq.anteprima { border-left-color:var(--giallo); color:var(--giallo);
+                  border:1px dashed var(--giallo); border-left-width:3px }
+  #cdFondo { display:flex; gap:6px; margin-top:8px }
+  #cdFondo > div { flex:1; text-align:center; padding:7px 0; font-size:11px;
+                   letter-spacing:.04em; border:1px solid var(--riga);
+                   border-radius:7px; color:var(--tenue); cursor:pointer }
+  #cdSalva:hover { color:var(--testo); border-color:var(--viola) }
+  #cdSvuota:hover { color:var(--rosso); border-color:var(--rosso) }
+  #cdTempo { color:var(--tenue); font-size:11px; margin-bottom:6px }
+
+/* ═══ LO STILE DELLE COLONNE, PORTATO QUI (Seba, 2/9: «usa le info che ci
+   sono, non inventarti nulla, adatta lo stile grafico»). Sotto non cambia
+   NIENTE di quello che si legge o si fa: stesse voci, stessi secondi, stesso
+   «+ CODA», stesse ▲▼✕, stessi stati. Cambiano i colori di casa, il carattere,
+   le righe a 32 px come le colonne, e i bottoni che diventano pastiglie.
+   Sta in fondo al foglio apposta: qui vince. ═══ */
+:root { --fondo:#191f24; --sfondo:#20272b; --riga:#2b353a; --testo:#e5ecec;
+        --tenue:#96a6ac; --viola:#9dcdba; --verde:#5fd3a8; --giallo:#d3b786;
+        --rosso:#ff8155; --rosa:#e9a1b8; --nomeRiposo:#aebcc1;
+        /* il tema LSM (8/9): le stesse variabili della pagina, vedi il blocco in fondo */
+        --violaRGB:157,205,186; --verdeRGB:95,211,168; --gialloRGB:211,183,134;
+        --lsm-linea:#ffffff16; --lsm-linea2:#ffffff20; --lsm-vetro:#162027dd;
+        --lsm-menta:#9dcdba; --lsm-menta-pieno:#a2cdb8; --lsm-menta-scuro:#14251c; --lsm-oro:#d3b786; --lsm-arancio:#ff8155;
+        --ui:"Helvetica Neue",Helvetica,Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace }
+h3 { font-weight:600 }
+/* le righe del rundown e della coda: come le righe delle colonne */
+.rd, .cq { min-height:32px; padding:0 6px 0 4px; margin:0; border-radius:0;
+           border-bottom:1px solid rgba(255,255,255,.06); border-left:3px solid transparent;
+           align-items:center; gap:6px; position:relative }
+.rd:hover, .cq:hover { background:rgba(255,255,255,.04) }
+.rd .n, .cq .n { font-weight:300; color:var(--nomeRiposo); font-size:12px }
+.rd:hover .n, .cq:hover .n { font-weight:600; color:var(--testo) }
+.rd .d, .cq .d { font-size:9.5px; font-variant-numeric:tabular-nums; color:var(--tenue);
+                 white-space:nowrap; flex:0 0 auto }
+/* i gesti in pastiglia: «+ CODA» resta sempre a vista (in regia si guarda,
+   non si cerca), ▲▼✕ compaiono al passaggio come prima */
+.rd .piu, .cq .att { font:600 10px "IBM Plex Mono",ui-monospace,monospace; letter-spacing:.03em;
+                     color:var(--tenue); border:1px solid var(--riga); border-radius:5px;
+                     background:var(--sfondo); padding:0 7px; height:23px;
+                     display:inline-flex; align-items:center; justify-content:center;
+                     opacity:1; cursor:pointer }
+.cq .att { width:24px; padding:0; font-size:13px; opacity:0 }
+/* ⚠️ IL ↻ ACCESO E' UNO STATO, NON UN ATTREZZO DI PASSAGGIO (Seba, 4/9): il
+   motore sta ripetendo quella voce, e in regia si deve vedere senza andarla a
+   cercare col mouse. Quindi resta acceso e verde anche a mano ferma. */
+.cq .att.loop.acceso { opacity:1; color:var(--verde); border-color:var(--verde);
+                       background:rgba(var(--verdeRGB),.12) }
+.cq:hover .att { opacity:1 }
+.rd .piu:hover, .cq .att:hover { color:var(--viola); border-color:var(--viola);
+                                 background:#203730 }
+.cq .att.via:hover { color:var(--rosso); border-color:var(--rosso); background:#3a2a24 }
+/* gli stati, con la lingua delle colonne: verde velato = pronta al play,
+   verde pieno = sta girando, viola = in coda (scelta), spenta = passata */
+.rd.cue { border-left-color:var(--giallo); background:rgba(var(--gialloRGB),.10) }
+.rd.cue .n { color:var(--giallo); font-weight:600 }
+.cq.accodata { border-left-color:var(--viola) }
+/* ⚠️ L'ANTEPRIMA RESTA GIALLA E TRATTEGGIATA, com'era. Nel playout il CUE
+   mette la voce in coda come PROVVISORIA (fino al TAKE o all'annulla):
+   fatta verde come le altre, sembrava «aggiunta davvero» (Seba, 2/9). Il
+   tratteggio dice «e' qui ma non e' ancora tua». */
+.cq.anteprima { border:1px dashed var(--giallo); border-left:3px solid var(--giallo);
+                background:rgba(var(--gialloRGB),.08); color:inherit }
+.cq.anteprima .n { color:var(--giallo); font-weight:600 }
+.cq.inonda { border-left-color:var(--verde); background:rgba(var(--verdeRGB),.22);
+             box-shadow:inset 3px 0 8px -4px rgba(var(--verdeRGB),.75); color:inherit }
+.cq.inonda .n { color:var(--verde); font-weight:600 }
+.cq.passata { opacity:.5 }
+.cq.passata .n { color:var(--tenue) }
+#prv.armata { border-color:var(--verde) }
+#tTake.conto { border-color:var(--verde); color:var(--verde) }
+.vuoto { font-size:11.5px }
+/* ═══ IL TEMA «LSM» ANCHE NELLA CONSOLLE (8/9/2026, con la pagina): dentro i due riquadri del
+   playout il fondo e' trasparente e si vede lo radial-gradient(ellipse 78% 92% at 36% 44%, #3d4951 0%, #262f36 33%, #1c2329 60%, #191f24 80%) fixed della pagina; aperta da sola (una finestra
+   sua) si dipinge lo stesso stage. Zone di vetro, schede menta, il TAKE arancio pieno (e' il
+   «vai»), i numeri del timecode in mono chiaro, le celle NEXT CUT/CLIP in oro.
+   ⚠️ La leva della velocita' e' quella di casa, come nella pagina: non si tocca. ═══ */
+html.innestata, html.innestata body { background:transparent !important }
+html:not(.innestata) body { background:radial-gradient(ellipse 78% 92% at 36% 44%, #3d4951 0%, #262f36 33%, #1c2329 60%, #191f24 80%) fixed }
+.zona { background:var(--lsm-vetro) !important; border:1px solid var(--lsm-linea) !important; border-radius:8px !important }
+#tab span { color:var(--nomeRiposo) !important; font:600 11px/1 var(--mono) !important; letter-spacing:1.6px; text-transform:uppercase; border-radius:5px !important; padding:6px 10px !important }
+#tab span.on { background:var(--lsm-menta-pieno) !important; color:var(--lsm-menta-scuro) !important }
+#tcRegia { background:#10161a !important; border:1px solid var(--lsm-linea) !important; border-radius:8px !important }
+#tcFine { font-family:var(--mono) !important; color:var(--testo) !important; letter-spacing:1px !important }
+.tccella { border:1px solid var(--lsm-linea) !important; border-radius:6px !important }
+.tccella u { color:var(--tenue) !important; letter-spacing:1.4px }
+.tccella b { font-family:var(--mono) !important; color:var(--lsm-oro) !important }
+#tcRegia.canna  #tcTally { background:var(--lsm-menta) !important }
+#tcRegia.pronta #tcTally { background:var(--lsm-oro) !important }
+#tcRegia.onda   #tcTally { background:var(--verde) !important }
+#tcRegia.corta  #tcTally { background:var(--lsm-arancio) !important }
+#precBarra { background:var(--lsm-menta) !important }
+#precTesto { color:var(--tenue) !important; font:600 10.5px/1 var(--mono) !important; letter-spacing:1.6px; text-transform:uppercase }
+#tTake { background:var(--lsm-arancio) !important; color:#2a1810 !important; border:1px solid transparent !important; font-weight:700 !important; letter-spacing:1px; border-radius:7px !important }
+#tTake small { color:#4a2a1c !important }
+#tTake:hover { background:#ff9a76 !important }
+#tTake.conto { background:var(--lsm-oro) !important; color:#2a2010 !important }   /* sta contando: oro, come le cose in canna */
+
+/* Superfici antracite coerenti con LIVE/CATALOG; i colori di stato restano propri. */
+html:not(.innestata) body{background:radial-gradient(ellipse 95% 110% at 25% 30%,#4d606a 0%,#303e47 34%,#202b34 66%,#151e26 100%) fixed}
+.zona{background:linear-gradient(145deg,#303e47 0%,#25323c 42%,#19242d 100%)!important}
+#tcRegia{background:linear-gradient(115deg,#25333d 0%,#18222b 48%,#101820 100%)!important}
+</style></head><body>
+<script>if (window.top !== window) document.documentElement.classList.add('innestata');</script>
+<div id="testa"><b>PLAYOUT · CODA</b><span id="prog">—</span>
+  <span id="stato">collego…</span></div>
+
+<div class="zona" id="rundown">
+  <!-- la fila delle macinate ⚡: chi lavora e chi aspetta, come nella colonna -->
+  <div id="smFila" style="display:none"></div>
+  <!-- ⚠️ ALTEZZA RISERVATA (notte del 6/9): questa striscia compariva e spariva
+       (display:none) e la riga delle schede sotto saltava di 17 px proprio
+       quando il dito arrivava — l'operatore ha cliccato la riga sbagliata.
+       Adesso lo spazio c'e' sempre: si accende e si spegne con visibility. -->
+  <div id="precarica" style="visibility:hidden;margin-bottom:8px">
+    <div style="font-size:10px;color:var(--tenue);margin-bottom:3px" id="precTesto">LOADING…</div>
+    <div style="height:6px;border:1px solid var(--riga);border-radius:4px;overflow:hidden">
+      <div id="precBarra" style="height:100%;width:0%;background:var(--viola)"></div></div>
+  </div>
+  <div id="tab"><span data-t="clip" class="on">CLIP</span><span data-t="pl">PLAYLIST</span><span data-t="sm">&#x26a1; AI</span></div>
+  <div id="rdLista"><div class="vuoto">—</div></div>
+</div>
+
+<div class="zona" id="centro">
+  <!-- il TC di regia sta QUI, centrale (Seba): il conto alla rovescia
+       davanti agli occhi, e la coda si riprende lo spazio -->
+  <!-- ⚠️ IL TIMECODE C'E' SEMPRE (Seba, 3/9: «possiamo averlo da subito e non
+       solo quando va in play?»). Prima nasceva display:none e comparendo
+       SPINGEVA GIU' la bottoniera: la fila di bottoni si spostava sotto le
+       dita nel momento peggiore. Adesso sta fermo e cambia solo quello che
+       dice; i campi sono gli stessi. La fascia in cima e' il TALLY: lo stato
+       si legge con la coda dell'occhio, senza leggere. -->
+  <div id="tcRegia">
+    <div id="tcTally"></div>
+    <div class="tcdentro">
+      <div id="tcFine">--:--:--:--<i></i></div>
+      <div class="tccelle">
+        <div class="tccella"><u>NEXT CUT</u><b id="tcTaglio">--:--</b></div>
+        <div class="tccella"><u>CLIP</u><b id="tcClip">—</b></div>
+      </div>
+      <b id="tcPos" style="display:none">--:--</b>
+      <div id="tcDopo">coda ferma</div>
+    </div>
+  </div>
+  <div id="prv" style="display:none"></div>
+  <div id="quando">
+    <!-- in inglese e senza numeri (Seba). ⚠️ I TASTI 1/2/3 QUI NON SCELGONO
+         PIU' IL QUANDO: dal 30/8 sono LA CAMERA, in tutta la macchina. Il
+         quando si clicca, o si fa con MAIUSC+1/2/3. -->
+    <span data-q="ora" class="on">NOW</span>
+    <span data-q="clip">END CLIP</span>
+    <span data-q="coda">END PL</span>
+  </div>
+  <div id="tTake">TAKE &nbsp;<small>T &middot; NOW</small></div>
+  <div id="tAnnulla">CANCEL PREVIEW</div>
+  <div id="lavori"></div>
+  <!-- PLAY e STOP piccoli e affiancati, come i bottoni del quando (Seba);
+       lo spazio continua ad alternare -->
+  <div id="trasporto" style="display:flex;gap:6px;margin-top:auto">
+    <span id="tPlay" style="flex:1;text-align:center;padding:7px 0;border:1px solid var(--riga);border-radius:7px;cursor:pointer;color:var(--verde);letter-spacing:.08em">&#x25b6; PLAY</span>
+    <span id="tStop" style="flex:1;text-align:center;padding:7px 0;border:1px solid var(--riga);border-radius:7px;cursor:pointer;color:var(--rosso);letter-spacing:.08em">&#x25a0; STOP</span>
+  </div>
+  <div id="tOnda" style="display:none"></div>
+</div>
+
+<div class="zona" id="codaz">
+  <div id="cdTempo" style="display:none">—</div>
+  <div id="cdLista"><div class="vuoto">coda spenta: &laquo;+&raquo; su una voce per partire</div></div>
+  <div id="cdFondo">
+    <div id="cdSalva">SAVE PLAYLIST</div>
+    <div id="cdSvuota">CLEAR</div>
+  </div>
+</div>
+
+<div id="leva">
+  <div class="leva">
+    <span class="eti">100%</span>
+    <input type="range" id="levaSl" min="0" max="100" value="100" step="1"
+           orient="vertical" aria-label="velocità della coda">
+    <span class="eti">0</span>
+    <span class="val" id="levaVal">100%</span>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const canale = new BroadcastChannel('lc_micro_integrated_check');
+// il gettone della pagina che ci ha aperti: i gesti vanno solo a lei,
+// e si ascolta solo il suo stato (mai quello di un'altra pagina aperta)
+const ponte = new URLSearchParams(location.search).get('ponte');
+let S = null, vistoA = 0, tabOra = 'clip', quandoOra = 'ora';
+// quale meta' di se stessa mostrare: ?solo=rundown | ?solo=comandi | niente = tutta
+{ const solo = new URLSearchParams(location.search).get('solo');
+  if (solo === 'rundown') document.body.classList.add('solo-rundown');
+  else if (solo === 'comandi') document.body.classList.add('senza-rundown'); }
+// ⚠️ SI RIDISEGNA SOLO SE E' CAMBIATO QUALCOSA — lezione T19 del diario,
+// ripagata qui da Seba («devo cliccare 2 volte»): lo stato batte 2 volte
+// al secondo, e un clic che cade durante il ridisegno atterra su un nodo
+// appena sostituito e si perde. Confrontare la stringa costa niente.
+let ultimoRd = '', ultimoCd = '';
+const espansi = new Set();       // i blocchi playlist aperti nella coda
+
+function manda(g) { canale.postMessage(Object.assign({ponte}, g)); }
+let tcPrima = null;         // il battito precedente: serve al ritmo VERO
+canale.onmessage = e => {
+  const d = e.data || {};
+  if (!d.stato) return;
+  if (ponte && d.ponte && d.ponte !== ponte) return;   // stato di un'altra pagina
+  if (S && S.attiva) tcPrima = {pos: S.pos, visto: vistoA};
+  S = d.stato; vistoA = Date.now();
+  // ⚠️ E SI TOGLIE, QUANDO LA PAGINA TORNA A PARLARE. La classe si metteva e
+  // non si toglieva piu': bastava un battito in ritardo — e ne arriva uno
+  // ogni volta che il Mac e' carico, per esempio mentre RIFE macina — e la
+  // fascia rossa restava li' per sempre, con scritto «non raggiungibile»
+  // mentre la consolle stava benissimo. Un avviso che non sa spegnersi
+  // diventa una bugia dopo il primo secondo.
+  $('#testa').classList.remove('parla');
+  dipingi();
+};
+manda({gesto: 'stato'});
+// il battito arriva dalla pagina; se tace, lo si dice (e si riprova)
+setInterval(() => {
+  // ⚠️ E NON AL PRIMO BATTITO IN RITARDO. Il battito e' ogni 500 ms: 2,6 s
+  // erano cinque battiti, e mentre RIFE macina il Mac ne perde qualcuno per
+  // conto suo. Una fascia rossa che lampeggia in mezzo a una messa in onda
+  // distrae nel momento peggiore, e «in ritardo» non vuol dire «morta».
+  // Quattro secondi sono otto battiti: se la pagina e' viva si e' gia' fatta
+  // sentire, e se e' morta lo si sa comunque in fretta.
+  if (Date.now() - vistoA > 4000) {
+    // ⚠️ la consolle e' la stessa per il vivo e per catalogazione: dire «pagina
+    // di catalogazione» in playout mandava a cercare nel posto sbagliato.
+    $('#stato').textContent = 'la pagina non risponde \u00b7 riprovo\u2026';
+    $('#testa').classList.add('parla');     // se no la frase non si vede
+    manda({gesto: 'stato'});
+  }
+}, 1300);
+
+// ▲▼✕ sulle voci della coda: la stessa grammatica delle playlist in
+// catalogazione. Compaiono solo su cio' che deve ancora andare in onda
+// (il passato e' passato) e mai sull'anteprima (quella ha TAKE e ESC).
+function attrezzi(v, idx) {
+  const i = idx !== undefined ? idx : v.i;
+  const q = v.quante || 1;               // il blocco playlist viaggia intero
+  // ⚠️ IL ↻ C'E' ANCHE SULLA VOCE IN ONDA (Seba, 4/9: le grafiche si mandano in
+  // loop mentre girano). E' uno STATO, non un attrezzo di passaggio: acceso
+  // resta acceso e si vede a mano ferma, perche' e' il MOTORE a ripetere.
+  // il ↻ solo dove il ricevitore lo sa fare: lo dichiara lo stato (loopSiPuo)
+  const loop = q === 1 && v.stato !== 'anteprima' && S && S.loopSiPuo
+    ? '<span class="att loop' + (v.loop ? ' acceso' : '') + '" data-loop="' + i +
+      '" data-on="' + (v.loop ? 0 : 1) + '" title="' +
+      (v.loop ? 'smetti di ripeterla' : 'ripeti questa finche\u2019 non mandi altro') +
+      '">\u21bb</span>' : '';
+  if (v.stato === 'anteprima') return '';
+  if (v.stato === 'inonda') return loop;
+  const su = v.stato === 'accodata'
+    ? '<span class="att" data-su="' + i + '" data-q="' + q + '" title="su">&#x25b2;</span>' +
+      '<span class="att" data-giu="' + i + '" data-q="' + q + '" title="giù">&#x25bc;</span>' : '';
+  return loop + su + '<span class="att via" data-tog="' + i + '" data-q="' + q +
+         '" title="togli dalla coda">&#x2715;</span>';
+}
+
+function secondi(x) { return (x >= 60 ? Math.floor(x / 60) + 'm ' : '') + (x % 60).toFixed(0) + 's'; }
+function tcDaQuadri(q, fps) {
+  if (q == null || !fps) return '--:--:--:--';
+  const ff = q % fps, sTot = Math.floor(q / fps);
+  const hh = Math.floor(sTot / 3600), mm = Math.floor(sTot / 60) % 60, ss = sTot % 60;
+  const p2 = x => String(x).padStart(2, '0');
+  return p2(hh) + ':' + p2(mm) + ':' + p2(ss) + ':' + p2(ff);
+}
+// ⚠️ IL CONTEGGIO NON ASPETTA IL BATTITO: fra uno stato e l'altro (500 ms)
+// la posizione si interpola con l'orologio e la velocita' della leva —
+// un conteggio che scatta a mezzo secondo non e' un conteggio di regia.
+let tcUltimoBuono = false;   // c'e' gia' stato un battito buono?
+// ⚠️ A RIPOSO IL RIQUADRO NON SPARISCE: dice quello che c'e' in canna. Tre
+// stati fermi (niente · coda carica ma ferma · anteprima pronta) e poi quello
+// in movimento, che e' il conto alla rovescia di sempre qui sotto.
+function tcFermo() {
+  const box = $('#tcRegia'), voci = (S && S.voci) || [];
+  // ⚠️ IL ROSSO DEL TAGLIO SI SPEGNE QUI. Il conto in movimento lo scrive
+  // inline (style.color) quando mancano meno di 2 s; a coda finita nessuno lo
+  // toglieva e il NEXT CUT restava rosso a vita sopra un «--:--». Un rosso che
+  // c'e' sempre non dice piu' niente.
+  $('#tcTaglio').style.color = '';
+  const ant = voci.filter(v => v.stato === 'anteprima');
+  const fare = voci.filter(v => v.stato === 'accodata' || v.stato === 'inonda');
+  const scrivi = (t) => { const i = t.lastIndexOf(':');
+    $('#tcFine').innerHTML = t.slice(0, i + 1) + '<i>' + t.slice(i + 1) + '</i>'; };
+  const F = (S && S.fps) || 50;
+  box.style.opacity = ''; box.style.display = '';
+  if (ant.length) {                                   // qualcosa in canna
+    const s2 = ant.reduce((a, v) => a + (v.s || 0), 0);
+    box.className = 'pronta'; scrivi(tcDaQuadri(Math.round(s2 * F), F));
+    $('#tcTaglio').textContent = tcDaQuadri(Math.round(s2 * F), F).slice(3);
+    $('#tcClip').textContent = 'IN CANNA';
+    $('#tcDopo').textContent = '\u25b6 ' + ant[0].nome;
+    return;
+  }
+  if (fare.length) {                                  // coda carica, ma ferma
+    const s2 = fare.reduce((a, v) => a + (v.s || 0), 0);
+    box.className = 'canna'; scrivi(tcDaQuadri(Math.round(s2 * F), F));
+    $('#tcTaglio').textContent = tcDaQuadri(Math.round((fare[0].s || 0) * F), F).slice(3);
+    $('#tcClip').textContent = 'CLIP 0/' + fare.length;
+    $('#tcDopo').textContent = 'FERMA \u00b7 NEXT: ' + fare[0].nome;
+    return;
+  }
+  box.className = 'spento'; scrivi('--:--:--:--');     // niente in canna
+  $('#tcTaglio').textContent = '--:--'; $('#tcClip').textContent = '\u2014';
+  $('#tcDopo').textContent = 'coda ferma';
+}
+function dipingiTC() {
+  if (!S || !S.attiva || !S.tc) { tcFermo(); return; }
+  // ⚠️ UN BATTITO PERSO NON DEVE AZZERARE L'OROLOGIO DELLA REGIA — fronte 3
+  // del secondo audit: «un battito perso e il grande orologio scrive
+  // 00:00:00:00 · LAST per mezzo secondo mentre la coda suona». In regia
+  // quell'orologio e' il numero su cui si chiama lo stacco: mezzo secondo di
+  // zeri e' peggio di mezzo secondo di niente, perche' gli zeri si LEGGONO.
+  // La convenzione di casa e' la stessa delle spie: si tiene l'ultimo valore
+  // buono e si dice che e' fermo, invece di inventarne uno nuovo.
+  if (S.inMoto && !S.tc.fine_q && !S.tc.pos_q && tcUltimoBuono) {
+    $('#tcRegia').style.opacity = '.45';       // fermo: si vede che non e' fresco
+    return;
+  }
+  tcUltimoBuono = true;
+  $('#tcRegia').style.opacity = '';
+  $('#tcRegia').style.display = '';
+  const F = S.fps || 50;
+  // ⚠️ SI INTERPOLA SOLO SE LA POSIZIONE AVANZA DAVVERO: un lettore fermo
+  // sull'ultimo quadro (affamato di dati) non e' «in pausa», e contare
+  // sull'orologio per poi essere riacchiappati dal battito faceva ballare
+  // i frame nel tc (visto da Seba a coda finita). Il ritmo e' quello
+  // MISURATO fra due battiti — cosi' segue anche la leva, non la stima.
+  let ritmo = 0;
+  if (S.inMoto && tcPrima && vistoA > tcPrima.visto) {
+    ritmo = (S.pos - tcPrima.pos) / ((vistoA - tcPrima.visto) / 1000);
+    if (Math.abs(ritmo) < 0.02) ritmo = 0;
+  }
+  const passati = ritmo ? (Date.now() - vistoA) / 1000 * ritmo : 0;
+  const dq = Math.max(0, Math.min(Math.round(passati * F), S.tc.fine_q));
+  const pos = S.tc.pos_q + dq;
+  const taglio = Math.max(0, S.tc.taglio_q - dq);
+  const fine = Math.max(0, S.tc.fine_q - dq);
+  // IL GRANDE E' QUELLO CHE MANCA (Seba: «il tc che cresce non mi serve;
+  // FINE e' il piu' importante da visualizzare»)
+  const tFine = tcDaQuadri(fine, F), iF = tFine.lastIndexOf(':');
+  $('#tcFine').innerHTML = tFine.slice(0, iF + 1) + '<i>' + tFine.slice(iF + 1) + '</i>';
+  $('#tcFine').style.color = '';                 // il colore lo decide la classe
+  // ⚠️ LA FASCIA NON PUO' DIRE «IN ONDA» SE NIENTE SI MUOVE (operatore, 4/9:
+  // leva a zero, testina ferma, e il pannello verde con un conto alla rovescia
+  // — «lo stesso quadro visivo di quando sta davvero suonando»). I numeri
+  // restano, che servono; cambia il colore, che e' la cosa che si legge senza
+  // leggere. Ferma = viola, come «carica ma ferma».
+  $('#tcRegia').className = !S.inMoto ? 'canna' : (fine < 5 * F ? 'corta' : 'onda');
+  $('#tcTaglio').textContent = tcDaQuadri(taglio, F).slice(3);   // MM:SS:FF
+  $('#tcTaglio').style.color = taglio < 2 * F ? 'var(--rosso)'
+                             : taglio < 5 * F ? 'var(--giallo)' : '';
+  $('#tcPos').textContent = tcDaQuadri(pos, F).slice(3);
+  // in inglese, e il «dopo» ha la sua riga (Seba: a capo non convinceva)
+  if (S.taglioA && S.attiva) {
+    const manca = Math.max(0, S.taglioA - pos) / F;
+    $('#tTake').textContent = 'CUT IN ' + manca.toFixed(1) + ' s';
+  }
+  $('#tcClip').textContent = 'CLIP ' + S.tc.clip_n + '/' + S.tc.clip_tot;
+  $('#tcDopo').textContent = (S.inMoto ? '' : 'FERMA \u00b7 ') +
+    (S.tc.prossima ? 'NEXT: ' + S.tc.prossima : 'LAST');
+}
+setInterval(dipingiTC, 100);
+
+let ultimoSm = '';
+function dipingi() {
+  if (!S) return;
+  $('#prog').textContent = S.prog || 'nessun progetto aperto';
+  $('#stato').textContent = S.attiva
+    ? (S.inMoto ? 'in onda · ' + S.pos.toFixed(1) + ' s' : 'armata, ferma · ' + S.pos.toFixed(1) + ' s')
+    : 'coda spenta';
+  // ── rundown ──
+  const voci = tabOra === 'clip' ? (S.clip || [])
+             : tabOra === 'pl' ? (S.pl || []) : (S.sm || []);
+  const rdHtml = voci.length ? voci.map(v =>
+    '<div class="rd' + (S.cue && S.cue.nome === v.nome ? ' cue' : '') + '" data-n="' + v.nome + '">' +
+    '<span class="n">' + v.nome + '</span>' +
+    '<span class="d">' + (v.quante != null ? v.quante + ' clip · ' : '') + (v.s || 0) + ' s</span>' +
+    // ⚠️ IL MOMENTO SI SCEGLIE QUI, E SCEGLIERLO E' MANDARE (Seba, 3/9): niente
+    // piu' giro dal TAKE. I tre momenti sono gli stessi di prima ('ora',
+    // 'clip', 'coda' = END PL): cambia dove si premono, non cosa vogliono dire.
+    '<span class="rdatt">' +
+      '<b class="ora" data-manda="' + v.nome + '|ora" title="in onda adesso">NOW</b>' +
+      '<b data-manda="' + v.nome + '|clip" title="a fine clip in onda">END CLIP</b>' +
+      '<b data-manda="' + v.nome + '|coda" title="a fine playlist in onda">END PL</b>' +
+    '</span>' +
+    '<span class="piu" data-piu="' + v.nome + '" title="accoda in fondo, senza togliere niente">+ CODA</span></div>'
+  ).join('') : '<div class="vuoto">niente qui</div>';
+  if (rdHtml !== ultimoRd) { $('#rdLista').innerHTML = rdHtml; ultimoRd = rdHtml; }
+  // ── anteprima ──
+  if (S.cue) {
+    $('#prv').style.display = '';
+    $('#prv').classList.add('armata');
+    $('#prv').innerHTML = '<div class="chi">&#x25b6; ' + S.cue.nome +
+      (S.rifacendo ? ' <span style="color:var(--giallo)">&hellip;</span>' : '') +
+      '</div>';
+  } else {
+    // niente testo-guida (Seba): quando non c'e' anteprima, niente scatola
+    $('#prv').style.display = 'none';
+    $('#prv').classList.remove('armata');
+  }
+  // ── il conto alla rovescia del taglio ──
+  if (S.taglioA && S.attiva) {
+    $('#tTake').classList.add('conto');
+    // il numero lo scrive dipingiTC con l'orologio interpolato: dal
+    // battito (500 ms) scattava — «non fluido come un timecode» (Seba)
+  } else {
+    $('#tTake').classList.remove('conto');
+    // ⚠️ la scritta la rifa' QUI a ogni giro: cambiarla solo nel markup non
+    // sarebbe servito a niente (provato: restava «TAKE T»). Dal 3/9 il TAKE ha
+    // un significato solo — manda ADESSO quello che hai in canna — perche' il
+    // momento si sceglie sulla riga.
+    $('#tTake').innerHTML = 'TAKE &nbsp;<small>T &middot; NOW</small>';
+  }
+  $('#lavori').textContent = S.avviso || '';
+  // ── il banco delle ⚡: sparisce da solo quando non c'e' niente in ballo ──
+  const sl = S.smlav;
+  const box = $('#smFila');
+  if (!sl) { box.style.display = 'none'; box.innerHTML = ''; }
+  else {
+    const q = (sl.coda || []).length;
+    let h = '<div class="t">&#x26a1; slow-mo AI \u00b7 ' +
+            (sl.ora ? '1 al lavoro' : 'nessuna al lavoro') +
+            (q ? ' \u00b7 ' + q + ' in fila' : '') + '</div>';
+    if (sl.ora)
+      h += '<div class="r ora"><b>' + sl.ora.clip + '</b><i>' + sl.ora.fattore +
+           '\u00d7</i><span class="b"><u style="width:' + sl.ora.pc +
+           '%"></u></span><em>' + sl.ora.pc + '%</em></div>' +
+           '<div class="f">' + (sl.ora.fase || 'preparo\u2026') + '</div>';
+    (sl.coda || []).forEach((x, i) => {
+      h += '<div class="r"><b>' + x.clip + '</b><i>' + x.fattore +
+           '\u00d7</i><em>' + (i + 1) + '\u00aa in fila</em></div>';
+    });
+    if (h !== ultimoSm) { box.innerHTML = h; ultimoSm = h; }
+    box.style.display = '';
+  }
+  // il bottone onda/ferma non c'e' piu' (Seba usa lo spazio); #tOnda
+  // resta nascosto nel DOM per non toccare la macchina dei gesti
+  // ── coda in onda ──
+  const durTot = (S.voci || []).reduce((a, v) => a + (v.s || 0), 0);
+  // la barra della precarica: viva finche' lavora, poi un segno di spunta
+  const pre = S.precarica;
+  // ⚠️ LE CLIP OLTRE IL TETTO SI DICONO (Seba, 7/9 sera: tetto di 5 min sulla
+  // precarica). Stanno in «male» con la ragione scritta, e qui si contano a
+  // parte: «1 oltre 5 min» non e' un guasto, e' una scelta. Se le clip sono
+  // TUTTE oltre il tetto, totale e' 0: la striscia si accende lo stesso, se
+  // no l'operatore non saprebbe perche' non si e' precaricato niente.
+  const saltate = (pre && pre.saltate) || 0;
+  if (pre && (pre.totale || saltate)) {
+    $('#precarica').style.visibility = '';     // lo spazio c'e' gia': si accende
+    const pct = pre.totale ? Math.round(100 * pre.fatti / pre.totale) : 100;
+    $('#precBarra').style.width = pct + '%';
+    const guasti = (pre.male || []).length - saltate;
+    const tetto = pre.tetto_s ? Math.round(pre.tetto_s / 60) + ' min' : 'il tetto';
+    $('#precTesto').textContent = pre.stato === 'in corso'
+      ? 'LOADING… ' + pre.fatti + '/' + pre.totale + (saltate ? ' · ' + saltate + ' oltre ' + tetto : '')
+      : '✓ MEDIA READY' +
+        (guasti > 0 ? ' · ' + guasti + ' ⚠' : '') +
+        (saltate ? ' · ' + saltate + ' oltre ' + tetto + ', non precaricat' + (saltate === 1 ? 'a' : 'e') : '');
+  } else { $('#precarica').style.visibility = 'hidden'; }   // si spegne, non sparisce
+  dipingiTC();
+  // la leva segue la verita' della pagina, tranne mentre la sto muovendo io
+  if (S.rate !== undefined && Date.now() - levaMia > 1200 &&
+      Math.abs(S.rate - levaOra) > 0.01) { levaOra = S.rate; levaDipingi(); }
+  if (S.attiva) {
+    const corta = S.inMoto && S.resta_s != null && S.resta_s < 10;
+    $('#cdTempo').innerHTML = S.voci.length + ' voci · ' + secondi(durTot) +
+      ' · <span style="' + (corta ? 'color:var(--rosso);font-weight:700' : '') + '">fine strada fra ' +
+      (S.resta_s != null ? S.resta_s.toFixed(1) : '—') + ' s</span>' +
+      (S.rifacendo && S.stima_s ? ' · <span style="color:var(--giallo)">lavori ~' + S.stima_s + ' s</span>' : '');
+  } else { $('#cdTempo').textContent = '—'; }
+  // clic su un blocco playlist = espandi/richiudi; DOPPIO clic su una voce
+  // qualunque = riparti da li' (mai dentro l'anteprima: guardia di la')
+  const righe = [];
+  if (S.attiva) for (const v of S.voci) {
+    const segno = v.stato === 'inonda' ? '&#x25cf; ' : v.stato === 'anteprima' ? '&#x25b6; ' : '';
+    if (v.pl) {
+      const ap = espansi.has(v.id);
+      righe.push('<div class="cq ' + v.stato + '" data-plid="' + v.id + '" data-i="' + v.da +
+        '" title="clic: apri/chiudi &middot; doppio clic: riparti dal blocco"><span class="n">' +
+        (ap ? '&#x25be; ' : '&#x25b8; ') + segno + '&#x25a4; <b>' + v.nome + '</b></span>' +
+        '<span class="d">' + v.quante + ' clip &middot; ' + v.s + ' s</span>' +
+        attrezzi(v, v.da) + '</div>');
+      // ⚠️ DENTRO IL BLOCCO SI RIORDINA (Seba, 2/9: «le playlist ha senso
+      // aprirle per poter spostare le clip interne alla playlist, che ora in
+      // playout non si puo' fare: posso solo eliminarle»). Le frecce muovono
+      // UNA clip di UNA posizione e non escono mai dal blocco — la prima non
+      // ha ▲, l'ultima non ha ▼: se no la playlist si spezzerebbe in due
+      // tronconi con lo stesso nome, e il blocco e' proprio la fila di voci
+      // vicine con la stessa origine.
+      if (ap) v.dentro.forEach((c, k) => {
+        const fermo = c.stato === 'inonda' || c.stato === 'anteprima';
+        const fre = fermo || c.stato !== 'accodata' ? '' :
+          (k > 0 ? '<span class="att" data-su="' + c.i + '" data-q="1" ' +
+                   'title="su, dentro la playlist">&#x25b2;</span>' : '') +
+          (k < v.dentro.length - 1
+            ? '<span class="att" data-giu="' + c.i + '" data-q="1" ' +
+              'title="giù, dentro la playlist">&#x25bc;</span>' : '');
+        righe.push('<div class="cq ' + c.stato + '" data-i="' + c.i +
+          '" style="margin-left:16px" title="doppio clic: riparti da qui"><span class="n">' +
+          (c.stato === 'inonda' ? '&#x25cf; ' : '') +
+          (c.sm ? '<span style="color:var(--giallo)">&#x26a1;' + c.sm + '\u00d7</span> ' : '') +
+          c.nome + '</span>' +
+          '<span class="d">' + c.s + ' s</span>' + fre +
+          (fermo ? '' :
+            '<span class="att via" data-tog="' + c.i + '" data-q="1" ' +
+            'title="togli questa clip dalla coda">&#x2715;</span>') +
+          '</div>');
+      });
+    } else {
+      righe.push('<div class="cq ' + v.stato + '" data-i="' + v.i +
+        '" title="doppio clic: riparti da qui"><span class="n">' + segno +
+        (v.sm ? '<span style="color:var(--giallo)">&#x26a1;' + v.sm + '\u00d7</span> ' : '') +
+        v.nome + '</span><span class="d">' + v.s + ' s</span>' + attrezzi(v) + '</div>');
+    }
+  }
+  const cdHtml = righe.length ? righe.join('')
+    : '<div class="vuoto">coda spenta: &laquo;+&raquo; su una voce per partire</div>';
+  if (cdHtml !== ultimoCd) { $('#cdLista').innerHTML = cdHtml; ultimoCd = cdHtml; }
+}
+
+// ── i gesti ──
+$('#tab').onclick = e => { const t = e.target.dataset.t; if (!t) return;
+  tabOra = t; [...$('#tab').children].forEach(x => x.classList.toggle('on', x.dataset.t === t));
+  dipingi(); };
+// il paraurti anche qui: clic = anteprima (dopo 280 ms), DOPPIO clic =
+// MONTA E VAI — coda pulita e quell'elemento pronto, il play resta a te
+let rdClicTimer = null;
+$('#rdLista').onclick = e => {
+  const piu = e.target.dataset.piu;
+  if (piu) { clearTimeout(rdClicTimer); rdClicTimer = null;
+             manda({gesto: 'coda', nome: piu}); return; }
+  // la pastiglia del momento: manda subito, e l'attesa si svuota (il resto
+  // lo fa il ricevitore, gesto 'manda')
+  const mnd = e.target.dataset.manda;
+  if (mnd) { clearTimeout(rdClicTimer); rdClicTimer = null;
+             const [nome, quando] = mnd.split('|');
+             manda({gesto: 'manda', nome, quando}); return; }
+  const r = e.target.closest('.rd');
+  if (!r) return;
+  const nome = r.dataset.n;
+  clearTimeout(rdClicTimer);
+  rdClicTimer = setTimeout(() => { rdClicTimer = null;
+    manda({gesto: 'cue', nome}); }, 280);
+};
+$('#rdLista').ondblclick = e => {
+  const r = e.target.closest('.rd');
+  if (!r || e.target.closest('.rdatt')) return;   // le pastiglie non montano
+  clearTimeout(rdClicTimer); rdClicTimer = null;
+  manda({gesto: 'monta', nome: r.dataset.n});
+};
+$('#quando').onclick = e => { const q = e.target.closest('[data-q]');
+  if (!q) return; quandoOra = q.dataset.q;
+  [...$('#quando').children].forEach(x => x.classList.toggle('on', x.dataset.q === quandoOra));
+  dipingi(); };
+$('#tTake').onclick = () => manda({gesto: 'take', quando: quandoOra});
+$('#tAnnulla').onclick = () => manda({gesto: 'annulla'});
+$('#tOnda').onclick = () => manda({gesto: 'onda'});
+$('#tPlay').onclick = () => manda({gesto: 'play'});
+$('#tStop').onclick = () => manda({gesto: 'stop'});
+// ⚠️ IL PARAURTI FRA CLIC E DOPPIO CLIC (il catVoceTimer di casa): il
+// primo clic del doppio ESPANDEVA e ridisegnava la lista, il secondo
+// colpo cadeva su un nodo appena nato e il doppio clic moriva — Seba
+// doveva aprire il blocco e cliccare la prima clip, due passaggi. Ora
+// il clic singolo aspetta 280 ms, e il doppio lo cancella.
+let cdClicTimer = null;
+$('#cdLista').onclick = e => {
+  const t = e.target.dataset;
+  if (t.loop !== undefined) { clearTimeout(cdClicTimer); cdClicTimer = null;
+    manda({gesto: 'loop', i: +t.loop, on: t.on === '1'}); return; }
+  if (t.tog !== undefined) { clearTimeout(cdClicTimer); cdClicTimer = null;
+    manda({gesto: 'togli', i: +t.tog, q: +t.q || 1}); return; }
+  if (t.su !== undefined) { clearTimeout(cdClicTimer); cdClicTimer = null;
+    manda({gesto: 'sposta', i: +t.su, verso: -1, q: +t.q || 1}); return; }
+  if (t.giu !== undefined) { clearTimeout(cdClicTimer); cdClicTimer = null;
+    manda({gesto: 'sposta', i: +t.giu, verso: 1, q: +t.q || 1}); return; }
+  const r = e.target.closest('.cq');
+  if (!r || !r.dataset.plid) return;
+  const id = +r.dataset.plid;
+  clearTimeout(cdClicTimer);
+  cdClicTimer = setTimeout(() => {
+    cdClicTimer = null;
+    espansi.has(id) ? espansi.delete(id) : espansi.add(id);
+    ultimoCd = ''; dipingi();
+  }, 280);
+};
+$('#cdLista').ondblclick = e => {
+  clearTimeout(cdClicTimer); cdClicTimer = null;
+  // ⚠️ LE PASTIGLIE NON STACCANO (Seba, 3/9). Nel caso normale il doppio clic
+  // su una freccia non si forma nemmeno — premi ▲, la riga si sposta e il
+  // secondo colpo cade su un'altra riga. Ma quando la freccia RIFIUTA (riga
+  // gia' prima della coda, oppure «si sposta solo il futuro» su una voce in
+  // onda o passata) la riga non si muove: il secondo colpo cade sullo stesso
+  // ▲, il doppio clic si forma e mandava «vai», cioe' uno STACCO in onda. Ed
+  // e' proprio quando insisti perche' non e' successo niente che ci arrivi.
+  // Stessa guardia che le colonne clip hanno da sempre sui loro attrezzi.
+  if (e.target.closest('.att')) return;
+  const r = e.target.closest('.cq');
+  if (!r || r.dataset.i == null) return;
+  manda({gesto: 'vai', i: +r.dataset.i, quando: quandoOra});
+};
+// la conferma in due tempi SUL TASTO (come la vecchia consolle: niente
+// finestrelle in regia): primo clic arma, secondo entro 3 s pulisce
+let pulisciArmato = null;
+// SAVE col nome scelto da Seba: il bottone diventa un campo — Invio
+// salva, ESC annulla, vuoto = nome automatico CODA_hhmm
+$('#cdSalva').onclick = () => {
+  if ($('#cdSalva').querySelector('input')) return;
+  $('#cdSalva').innerHTML = '<input type="text" placeholder="nome playlist…" ' +
+    'style="width:92%;background:var(--fondo);color:var(--testo);' +
+    'border:1px solid var(--viola);border-radius:5px;padding:3px 6px;' +
+    'font:11px "IBM Plex Mono",ui-monospace,monospace;text-align:center;outline:none">';
+  const campo = $('#cdSalva').querySelector('input');
+  campo.focus();
+  const chiudi = () => { $('#cdSalva').textContent = 'SAVE PLAYLIST'; };
+  campo.onkeydown = e => {
+    e.stopPropagation();
+    if (e.key === 'Enter') { manda({gesto: 'salva', nome: campo.value.trim()}); chiudi(); }
+    else if (e.key === 'Escape') chiudi();
+  };
+  campo.onblur = chiudi;
+};
+$('#cdSvuota').onclick = () => {
+  if (pulisciArmato) {
+    clearTimeout(pulisciArmato); pulisciArmato = null;
+    $('#cdSvuota').textContent = 'CLEAR';
+    $('#cdSvuota').style.color = ''; $('#cdSvuota').style.borderColor = '';
+    manda({gesto: 'pulisci'});
+    return;
+  }
+  $('#cdSvuota').textContent = 'SURE? click again';
+  $('#cdSvuota').style.color = 'var(--rosso)';
+  $('#cdSvuota').style.borderColor = 'var(--rosso)';
+  pulisciArmato = setTimeout(() => {
+    pulisciArmato = null;
+    $('#cdSvuota').textContent = 'CLEAR';
+    $('#cdSvuota').style.color = ''; $('#cdSvuota').style.borderColor = '';
+  }, 3000);
+};
+// ── LA LEVA: lo slider vero della pagina, e il valore viaggia nel canale ──
+let levaOra = 1, levaMia = 0;         // levaMia: quando l'ho toccata io
+function levaDipingi() {
+  const pc = Math.round(levaOra * 100);
+  $('#levaSl').value = pc;
+  $('#levaSl').style.setProperty('--p', pc + '%');
+  $('#levaVal').textContent = pc + '%';
+  $('#levaVal').classList.toggle('fermo', pc === 0);
+}
+$('#levaSl').oninput = () => {
+  levaOra = (+$('#levaSl').value) / 100;
+  levaMia = Date.now();
+  levaDipingi();
+  manda({gesto: 'leva', v: levaOra});
+};
+levaDipingi();
+
+// ⚠️ LE TASTIERE SONO DUE E NON SI PARLANO — fronte 3 del secondo audit.
+// Un keydown non attraversa il confine di un iframe: col fuoco qui dentro, I e
+// O non marcavano piu' e nessuno lo diceva; e con il dito sulla LEVA — il
+// controllo che in regia si tiene sotto la mano — le quattro frecce
+// cambiavano il valore del cursore e mandavano al motore «leva 0.99», «0.98»,
+// «0.97», «0.96». Cioe' il gesto piu' naturale della consolle rallentava
+// l'onda di un punto percentuale alla volta.
+// Qui i tasti che contano si INOLTRANO alla pagina dal ponte che gia' c'e',
+// invece di sparire nel bordo dell'iframe.
+document.addEventListener('keydown', e => {
+  // ⚠️ LA LEVA E' UN <input type=range>: le frecce le mangia il browser prima
+  // di chiunque altro. Si fermano QUI, e diventano il gesto giusto.
+  if (e.target && e.target.id === 'levaSl' &&
+      (e.key === 'ArrowLeft' || e.key === 'ArrowRight' ||
+       e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+    e.preventDefault();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight')
+      manda({gesto: 'passo', d: e.key === 'ArrowRight' ? 1 : -1});
+    return;
+  }
+  if (e.target.tagName === 'INPUT') return;   // si sta scrivendo un nome
+  // I e O: marcare, che e' il mestiere. Non passavano il confine dell'iframe.
+  if (e.key === 'i' || e.key === 'I') { e.preventDefault(); manda({gesto: 'segna', quale: 'dentro'}); }
+  if (e.key === 'o' || e.key === 'O') { e.preventDefault(); manda({gesto: 'segna', quale: 'fuori'}); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+    e.preventDefault(); manda({gesto: 'passo', d: e.key === 'ArrowRight' ? 1 : -1});
+  }
+  if (e.key === 't' || e.key === 'T') { e.preventDefault(); manda({gesto: 'take', quando: quandoOra}); }
+  if (e.key === 'Escape') manda({gesto: 'annulla'});
+  if (e.key === ' ') { e.preventDefault(); manda({gesto: 'onda'}); }
+  // ⚠️ 1/2/3 = LA CAMERA, DAPPERTUTTO — deciso da Seba il 30/8: «con quello
+  // cambio la camera come faccio con 1 e 3, in pratica seleziono la camera
+  // coi tasti 1 2 e 3». Prima qui dentro gli stessi tre tasti sceglievano il
+  // QUANDO del take, e col fuoco sul quadro cambiavano camera: due significati
+  // per lo stesso dito, decisi da quale riquadro avevi cliccato per ultimo.
+  // Un tasto che fa due cose diverse a seconda di dove guardi non e' una
+  // scorciatoia, e' una trappola — e in regia si preme senza guardare.
+  // Il QUANDO resta sui suoi chip (si cliccano) e su MAIUSC+1/2/3.
+  if (e.key === '1' || e.key === '2' || e.key === '3') {
+    e.preventDefault();
+    manda({gesto: 'camera', n: +e.key});
+  }
+  if (e.shiftKey && (e.code === 'Digit1' || e.code === 'Digit2' || e.code === 'Digit3')) {
+    e.preventDefault();
+    quandoOra = {Digit1: 'ora', Digit2: 'clip', Digit3: 'coda'}[e.code];
+    [...$('#quando').children].forEach(x => x.classList.toggle('on', x.dataset.q === quandoOra));
+    dipingi();
+  }
+});
+</script></body></html>
+
+<!-- LVC_MICROTIPOGRAFIA_20260909_BEGIN -->
+<style id="lvc-microtipografia">
+/* Microtipografia approvata: solo colore, peso e cifre; struttura e gesti originali. */
+html:root .zona h3,html:root #tab span{font-weight:500!important}
+html:root .rd:not(.cue) .n,html:root .cq:not(.inonda):not(.anteprima):not(.passata) .n{font-weight:400!important;color:#c7d5db!important}
+html:root .rd .d,html:root .cq .d{color:#aabec8!important;font-weight:400!important;font-variant-numeric:tabular-nums}
+html:root #tcFine,html:root .tccella b{font-weight:400!important;font-variant-numeric:tabular-nums slashed-zero}
+html:root .tccella u,html:root #tcDopo{font-weight:400!important;color:#b0c0c9!important}
+html:root #tTake,html:root #tPlay,html:root #tStop,html:root #quando span{font-weight:500!important}
+html:root #tAnnulla,html:root #cdSalva,html:root #cdSvuota{font-weight:400!important;color:#bbccd4!important}
+html:root .leva .eti{color:#b2c5cf!important;font-variant-numeric:tabular-nums}
+</style>
+<!-- LVC_MICROTIPOGRAFIA_20260909_END -->
+
+<script src="demo-scene.js" data-kind="console"></script>

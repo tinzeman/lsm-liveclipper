@@ -1,0 +1,17 @@
+/* Solo testo: nessuna variazione a griglie, posizioni, spaziature, dimensioni o sfondi. */
+html.refined .barra.plancia button,html.refined .barra.plancia select{font-weight:500!important;font-variant-numeric:tabular-nums}
+html.refined .barra.plancia button:not(.gioca):not(.live):not(.corre):not(.messo):not(.fissa){color:#c7d5db!important}
+html.refined .tcgruppo .tcp{font-weight:500!important;color:#d8e5e8!important;font-variant-numeric:tabular-nums slashed-zero}
+html.refined .sottoplancia,html.refined .sottoplancia .num{font-weight:400!important;color:#aebfc8!important;font-variant-numeric:tabular-nums}
+html.refined aside.colonna h2{font-weight:500!important;color:#c8d6db!important}
+html.refined .clip2:not(.inonda):not(.armata):not(.scelta) .nt{font-weight:400!important;color:#c2d0d6!important}
+html.refined .cltc,html.refined .clcam,html.refined .lsm-conto{font-weight:400!important;color:#a7bac4!important;font-variant-numeric:tabular-nums}
+html.refined .attr{font-weight:500!important}
+html.refined .zona h3,html.refined #tab span{font-weight:500!important}
+html.refined .rd:not(.cue) .n,html.refined .cq:not(.inonda):not(.anteprima):not(.passata) .n{font-weight:400!important;color:#c7d5db!important}
+html.refined .rd .d,html.refined .cq .d{color:#aabec8!important;font-weight:400!important;font-variant-numeric:tabular-nums}
+html.refined #tcFine,html.refined .tccella b{font-weight:400!important;font-variant-numeric:tabular-nums slashed-zero}
+html.refined .tccella u,html.refined #tcDopo{font-weight:400!important;color:#b0c0c9!important}
+html.refined #tTake,html.refined #tPlay,html.refined #tStop,html.refined #quando span{font-weight:500!important}
+html.refined #tAnnulla,html.refined #cdSalva,html.refined #cdSvuota{font-weight:400!important;color:#bbccd4!important}
+html.refined .leva .eti{color:#b2c5cf!important;font-variant-numeric:tabular-nums}
