@@ -1,0 +1,254 @@
+{
+ "_nota": "scritto da fai_placca_L.py — non modificare a mano",
+ "SP": 3.0,
+ "Z0": 11.0,
+ "ZT": 14.0,
+ "dado": {
+  "chiave": 5.6,
+  "prof": 2.5
+ },
+ "pezzi": {
+  "psu5": {
+   "nome": "alimentatore 5 V",
+   "x0": 17.0,
+   "y0": 106.0,
+   "L": 78.0,
+   "W": 110.0,
+   "morsetti": "davanti",
+   "x1": 95.0,
+   "y1": 216.0
+  },
+  "psu12": {
+   "nome": "alimentatore 12 V",
+   "x0": 28.5,
+   "y0": 5.0,
+   "L": 57.0,
+   "W": 85.0,
+   "morsetti": "dietro",
+   "x1": 85.5,
+   "y1": 90.0
+  },
+  "pi5": {
+   "nome": "Raspberry Pi 5",
+   "x0": 87.0,
+   "y0": 9.0,
+   "L": 56.0,
+   "W": 85.0,
+   "nota": "SD davanti, USB e rete dietro, HDMI e USB-C a destra",
+   "x1": 143.0,
+   "y1": 94.0
+  },
+  "foc": {
+   "nome": "driver FOC",
+   "x0": 171.0,
+   "y0": 42.0,
+   "L": 39.7,
+   "W": 56.3,
+   "nota": "pettine J1 davanti, morsetti del motore a destra, morsetti 12 V a sinistra",
+   "x1": 210.7,
+   "y1": 98.3
+  }
+ },
+ "fori": [
+  {
+   "pezzo": "5V",
+   "tipo": "dado M3 sotto",
+   "x": 91.0,
+   "y": 110.0,
+   "quota": "foro tondo: 4 dal fianco destro, 4 dal lato morsetti"
+  },
+  {
+   "pezzo": "5V",
+   "tipo": "dado M3 sotto",
+   "x": 21.0,
+   "y": 213.0,
+   "quota": "asola: 4 dal fianco sinistro, 3 dal lato opposto ai morsetti"
+  },
+  {
+   "pezzo": "12V",
+   "tipo": "fondo base, foro cieco Ø2,5",
+   "x": 33.5,
+   "y": 87.0,
+   "quota": "asola lato morsetti: 5 dal fianco sinistro, ~3 dal bordo (e' un'asola)"
+  },
+  {
+   "pezzo": "12V",
+   "tipo": "fondo base, foro cieco Ø2,5",
+   "x": 80.0,
+   "y": 8.0,
+   "quota": "asola lato opposto: 5,5 dal fianco destro, 3 dal bordo"
+  },
+  {
+   "pezzo": "PI5",
+   "tipo": "colonnina M2,5 h4",
+   "x": 90.5,
+   "y": 12.5,
+   "quota": "3,5 dai lati lunghi; 3,5 dal lato SD"
+  },
+  {
+   "pezzo": "PI5",
+   "tipo": "colonnina M2,5 h4",
+   "x": 90.5,
+   "y": 70.5,
+   "quota": "3,5 dai lati lunghi; 23,5 dal lato USB"
+  },
+  {
+   "pezzo": "PI5",
+   "tipo": "colonnina M2,5 h4",
+   "x": 139.5,
+   "y": 12.5,
+   "quota": "3,5 dai lati lunghi; 3,5 dal lato SD"
+  },
+  {
+   "pezzo": "PI5",
+   "tipo": "colonnina M2,5 h4",
+   "x": 139.5,
+   "y": 70.5,
+   "quota": "3,5 dai lati lunghi; 23,5 dal lato USB"
+  },
+  {
+   "pezzo": "FOC",
+   "tipo": "colonnina M2,5 h6",
+   "x": 174.0,
+   "y": 45.0,
+   "quota": "3,0 da ogni bordo"
+  },
+  {
+   "pezzo": "FOC",
+   "tipo": "colonnina M2,5 h6",
+   "x": 174.0,
+   "y": 95.3,
+   "quota": "3,0 da ogni bordo"
+  },
+  {
+   "pezzo": "FOC",
+   "tipo": "colonnina M2,5 h6",
+   "x": 207.7,
+   "y": 45.0,
+   "quota": "3,0 da ogni bordo"
+  },
+  {
+   "pezzo": "FOC",
+   "tipo": "colonnina M2,5 h6",
+   "x": 207.7,
+   "y": 95.3,
+   "quota": "3,0 da ogni bordo"
+  },
+  {
+   "pezzo": "BASE",
+   "tipo": "svasato M3x8",
+   "x": 152.0,
+   "y": 20.0,
+   "quota": "colonnina della base (01S)"
+  },
+  {
+   "pezzo": "BASE",
+   "tipo": "svasato M3x8",
+   "x": 152.0,
+   "y": 96.0,
+   "quota": "colonnina della base (01S)"
+  },
+  {
+   "pezzo": "BASE",
+   "tipo": "svasato M3x8",
+   "x": 100.0,
+   "y": 20.0,
+   "quota": "colonnina della base (01S)"
+  },
+  {
+   "pezzo": "BASE",
+   "tipo": "svasato M3x8",
+   "x": 100.0,
+   "y": 96.0,
+   "quota": "colonnina della base (01S)"
+  },
+  {
+   "pezzo": "BASE",
+   "tipo": "svasato M3x8",
+   "x": 94.0,
+   "y": 122.0,
+   "quota": "colonnina della base (01S)"
+  },
+  {
+   "pezzo": "BASE",
+   "tipo": "svasato M3x8",
+   "x": 94.0,
+   "y": 218.0,
+   "quota": "colonnina della base (01S)"
+  },
+  {
+   "pezzo": "BASE",
+   "tipo": "svasato M3x8",
+   "x": 30.0,
+   "y": 122.0,
+   "quota": "colonnina della base (01S)"
+  },
+  {
+   "pezzo": "BASE",
+   "tipo": "svasato M3x8",
+   "x": 30.0,
+   "y": 218.0,
+   "quota": "colonnina della base (01S)"
+  }
+ ],
+ "sagoma": {
+  "davanti": [
+   86.0,
+   222.0,
+   5.0,
+   108.5
+  ],
+  "braccio": [
+   5.0,
+   124.5,
+   105.5,
+   224.0
+  ],
+  "tacche": [
+   [
+    -1.0,
+    17.5,
+    18.0,
+    34.0
+   ],
+   [
+    -1.0,
+    17.5,
+    118.385,
+    134.385
+   ],
+   [
+    -1.0,
+    17.5,
+    218.771,
+    234.771
+   ],
+   [
+    212.5,
+    240.0,
+    18.0,
+    34.0
+   ],
+   [
+    212.5,
+    240.0,
+    118.385,
+    134.385
+   ],
+   [
+    212.5,
+    240.0,
+    218.771,
+    234.771
+   ]
+  ],
+  "raggio": 2.0
+ },
+ "viteria": {
+  "svasato M3x8": "8 viti M3x8 a testa svasata (placca sulle colonnine)",
+  "dado M3 sotto": "2 dadi M3 premuti nelle sedi esagonali SOTTO la placca (prima di avvitarla) + 2 viti M3x6 dall'alto nei fori del 5 V",
+  "colonnina M2,5 h4": "4 viti M2,5x8 (Pi 5): il foro Ø2,2 si filetta da solo",
+  "colonnina M2,5 h6": "4 viti M2,5x10 (FOC): il foro Ø2,2 si filetta da solo",
+  "fondo base, foro cieco Ø2,5": "2 viti autofilettanti per plastica Ø3 x 5 con rondella, in 2 fori CIECHI Ø2,5 profondi 3,5 nel fondo: il fondo e' 4 mm e sotto la base resta intera (Seba, 10/09: niente fori passanti)"
+ }
+}

@@ -1,0 +1,62 @@
+{
+  "posto": {
+    "fonte": "MISURE_CALIBRO.json (Seba, 12/09/2026) + LSM_GEOMETRIA",
+    "scheda": {
+      "x0": 125.0,
+      "x1": 184.0,
+      "z0": 76.0,
+      "z1": 120.0,
+      "pcb": 1.6,
+      "componente": 4.0
+    },
+    "y_parete": 273.77,
+    "fori": [
+      [
+        127.5,
+        117.5
+      ],
+      [
+        176.0,
+        117.5
+      ],
+      [
+        127.5,
+        79.0
+      ],
+      [
+        176.0,
+        79.0
+      ]
+    ],
+    "colonnina": {
+      "d": 8.0,
+      "h": 6.0,
+      "inserto_d": 4.6,
+      "inserto_p": 5.8
+    },
+    "viti": "4 viti M3 x 6 negli inserti M3 a caldo (Ø4,6)",
+    "aria_flat": 30.0,
+    "boss_giunto_x": 214.0,
+    "spine": "mini-HDMI e USB-C sul lato sinistro (x 125.0), flat sul lato destro (x 184.0)"
+  },
+  "misure": {
+    "misurato_da": "Seba",
+    "data": "2026-09-12",
+    "strumento": "calibro, disegno a mano + foto",
+    "come_si_guarda": "come nella foto dell'annuncio: mini-HDMI e USB-C sul lato SINISTRO, presa del flat dello schermo sul lato DESTRO",
+    "lung": 59.0,
+    "larg": 44.0,
+    "fori": {
+      "diametro": 3.5,
+      "passa_M3": true,
+      "interasse_lato_lungo": 48.5,
+      "interasse_lato_corto": 38.5,
+      "primo_foro_dal_bordo_sinistro": 2.5,
+      "primo_foro_dal_bordo_alto": 2.5,
+      "quali": "i 4 agli angoli del rettangolo; gli altri 2 della scheda non si usano"
+    },
+    "componente_piu_alto": 4.0,
+    "cavo_flat_allo_schermo": 200.0,
+    "nota": "nel messaggio Seba ha scritto 59x64, nel disegno 44 e 59: le due foto (sua e dell'annuncio) hanno le proporzioni di 59x44. Le colonnine dipendono solo dal rettangolo dei fori. Il foro in alto a sinistra e' a 2,5 dal bordo sinistro e 2,5 dal bordo alto (Seba, 12/09: il 3,5 del disegno e' il diametro dei fori)."
+  }
+}
