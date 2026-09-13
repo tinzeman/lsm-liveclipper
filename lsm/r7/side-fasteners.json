@@ -1,0 +1,399 @@
+{
+  "source": "stampa_tutto_gpt/verifica/REVISIONE_FERRAMENTA_R7.json \u00b7 insert_map",
+  "source_sha256": "aebab1b2957bac9a045b30772c3d458c8c368486c7ab70901552859f4199ae24",
+  "head_offset_from_insert_mm": 4,
+  "fasteners": [
+    {
+      "id": "01_Base/side_0_4",
+      "side": "left",
+      "head": [
+        0.0,
+        26.0,
+        9.0
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "01_Base/side_0_226",
+      "side": "right",
+      "head": [
+        230.0,
+        26.0,
+        9.0
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "01_Base/side_1_4",
+      "side": "left",
+      "head": [
+        0.0,
+        126.385,
+        9.0
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "01_Base/side_1_226",
+      "side": "right",
+      "head": [
+        230.0,
+        126.385,
+        9.0
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "01_Base/side_2_4",
+      "side": "left",
+      "head": [
+        0.0,
+        226.771,
+        9.0
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "01_Base/side_2_226",
+      "side": "right",
+      "head": [
+        230.0,
+        226.771,
+        9.0
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "08_Deck/side_0_4",
+      "side": "left",
+      "head": [
+        0.0,
+        19.726,
+        59.576
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "08_Deck/side_0_226",
+      "side": "right",
+      "head": [
+        230.0,
+        19.726,
+        59.576
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "08_Deck/side_1_4",
+      "side": "left",
+      "head": [
+        0.0,
+        102.931,
+        73.5
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "08_Deck/side_1_226",
+      "side": "right",
+      "head": [
+        230.0,
+        102.931,
+        73.5
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "08_Deck/side_2_4",
+      "side": "left",
+      "head": [
+        0.0,
+        186.137,
+        87.424
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "08_Deck/side_2_226",
+      "side": "right",
+      "head": [
+        230.0,
+        186.137,
+        87.424
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "04_Frontale/side_0_4",
+      "side": "left",
+      "head": [
+        0.0,
+        9.0,
+        26.0
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "04_Frontale/side_0_226",
+      "side": "right",
+      "head": [
+        230.0,
+        9.0,
+        26.0
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "04_Frontale/side_1_4",
+      "side": "left",
+      "head": [
+        0.0,
+        9.0,
+        39.275
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "04_Frontale/side_1_226",
+      "side": "right",
+      "head": [
+        230.0,
+        9.0,
+        39.275
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "09_Console_schermo/side_0_4",
+      "side": "left",
+      "head": [
+        0.0,
+        268.599,
+        147.238
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "09_Console_schermo/side_0_226",
+      "side": "right",
+      "head": [
+        230.0,
+        268.599,
+        147.238
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "29_Retro_a_L/side_0_4",
+      "side": "left",
+      "head": [
+        0.0,
+        268.771,
+        82.0
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "29_Retro_a_L/side_0_226",
+      "side": "right",
+      "head": [
+        230.0,
+        268.771,
+        82.0
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "29_Retro_a_L/side_1_4",
+      "side": "left",
+      "head": [
+        0.0,
+        268.771,
+        120.238
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "29_Retro_a_L/side_1_226",
+      "side": "right",
+      "head": [
+        230.0,
+        268.771,
+        120.238
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "06_Retro_IO/side_4_16",
+      "side": "left",
+      "head": [
+        0.0,
+        242.77,
+        16.0
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "06_Retro_IO/side_4_50",
+      "side": "left",
+      "head": [
+        0.0,
+        242.77,
+        50.0
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "09_Console_schermo/lower_side_4",
+      "side": "left",
+      "head": [
+        0.0,
+        221.46571868088583,
+        101.79103193913787
+      ],
+      "inward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "06_Retro_IO/side_226_16",
+      "side": "right",
+      "head": [
+        230.0,
+        242.77,
+        16.0
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "06_Retro_IO/side_226_50",
+      "side": "right",
+      "head": [
+        230.0,
+        242.77,
+        50.0
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "09_Console_schermo/lower_side_226",
+      "side": "right",
+      "head": [
+        230.0,
+        221.46571868088583,
+        101.79103193913787
+      ],
+      "inward": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}
