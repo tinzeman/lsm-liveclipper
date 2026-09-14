@@ -1,0 +1,32 @@
+[
+  {
+    "id": "L1",
+    "name": "Firma",
+    "visible_size_mm": 12,
+    "left_margin_mm": 6,
+    "front_margin_mm": 6,
+    "colour": "#adb7bb",
+    "mark_paths_identical": true,
+    "bezel_unchanged": true
+  },
+  {
+    "id": "L2",
+    "name": "Presenza",
+    "visible_size_mm": 18,
+    "left_margin_mm": 6,
+    "front_margin_mm": 6,
+    "colour": "#c0c6c9",
+    "mark_paths_identical": true,
+    "bezel_unchanged": true
+  },
+  {
+    "id": "L3",
+    "name": "Sottovoce",
+    "visible_size_mm": 24,
+    "left_margin_mm": 6,
+    "front_margin_mm": 6,
+    "colour": "#60676b",
+    "mark_paths_identical": true,
+    "bezel_unchanged": true
+  }
+]

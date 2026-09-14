@@ -1,0 +1,15 @@
+{
+  "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
+  "part": "09_Console_schermo",
+  "outer_rear_top_radius_mm": 2.0,
+  "rear_y_mm": 277.77081298828125,
+  "top_z_mm": 156.23829650878906,
+  "remaining_rear_vertical_edge_mm": 2.0,
+  "removed_mm3": 190.69090683604014,
+  "protected_region_change_mm3": 0.0,
+  "screen_seat_fasteners_and_underside_unchanged": true,
+  "watertight": true,
+  "connected_solids": 1,
+  "stl_roundtrip": "pass",
+  "purpose": "Isolated visual proposal; manufacturing unchanged"
+}

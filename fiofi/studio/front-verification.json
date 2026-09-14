@@ -1,0 +1,15 @@
+{
+  "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
+  "part": "04_Frontale",
+  "outer_top_radius_mm": 2.0,
+  "removed_mm3": 128.10366734078318,
+  "deck_support_change_mm3": 0.0,
+  "deck_support_start_y_mm": 3.7,
+  "round_ends_y_mm": 1.669904788278645,
+  "remaining_top_land_horizontal_mm": 2.330095211721355,
+  "lower_panel_change_mm3": 0.0,
+  "arc_max_chord_error_mm": 0.00048191351513882097,
+  "watertight": true,
+  "connected_solids": 1,
+  "purpose": "Isolated visual proposal; manufacturing unchanged"
+}

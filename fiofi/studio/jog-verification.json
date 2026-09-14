@@ -1,0 +1,20 @@
+{
+  "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
+  "purpose": "Visual proposal only; no manufacturing files changed",
+  "part": "13_Ruota_jog",
+  "grip_crest_radius_mm": 0.3,
+  "grooves": 90,
+  "nominal_diameter_mm": 58,
+  "height_including_hub_mm": 23,
+  "watertight": true,
+  "connected_solids": 1,
+  "removed_mm3": 42.538657908577996,
+  "added_mm3": 1.0083085029523437e-13,
+  "protected_core_intersection_mm3": 0.0,
+  "removed_outside_grip_band_mm3": 0.010793734843205874,
+  "hub_cap_seat_and_fasteners_unchanged": true,
+  "grip_band_z_mm": [
+    0,
+    11.6
+  ]
+}

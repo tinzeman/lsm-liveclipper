@@ -1,0 +1,38 @@
+{
+  "purpose": "Isolated comfort proposal, unchanged manufacturing STL",
+  "options": [
+    {
+      "part": "13C",
+      "source_stl": "/Users/sebastiano/Desktop/LSM_Liveclipper/stampa_tutto_gpt/ACCESSORI_TPU/13C_Fascia_jog_TPU.stl",
+      "source_sha256": "117ceb888ee4ad90ae2954f60967932a28c46e9c29bd857ccd33fca8803bd5bc",
+      "source_pose_verified": true,
+      "outer_lip_radius_mm": 0.8,
+      "finger_lip_radius_mm": 0,
+      "watertight": true,
+      "removed_mm3": 7.010788044472399,
+      "fit_region_change_mm3": 0.0
+    },
+    {
+      "part": "13D",
+      "source_stl": "/Users/sebastiano/Desktop/LSM_Liveclipper/stampa_tutto_gpt/ACCESSORI_TPU/13D_Cappuccio_corto_TPU.stl",
+      "source_sha256": "7629afae1a424b7216c1417221e9c5b1e3a02c9fd88247a87ecef106cefb3635",
+      "source_pose_verified": true,
+      "outer_lip_radius_mm": 0.8,
+      "finger_lip_radius_mm": 0.6,
+      "watertight": true,
+      "removed_mm3": 11.276055716685818,
+      "fit_region_change_mm3": 5.414659017202523e-05
+    },
+    {
+      "part": "13E",
+      "source_stl": "/Users/sebastiano/Desktop/LSM_Liveclipper/stampa_tutto_gpt/ACCESSORI_TPU/13E_Cuffia_integrale_TPU.stl",
+      "source_sha256": "88ac10f1685e8fe328576f520ca7b5d39c7ec5c7e1dd16dd2016b23f143875cb",
+      "source_pose_verified": true,
+      "outer_lip_radius_mm": 0.8,
+      "finger_lip_radius_mm": 0.6,
+      "watertight": true,
+      "removed_mm3": 11.276055801005239,
+      "fit_region_change_mm3": 5.414659017202523e-05
+    }
+  ]
+}

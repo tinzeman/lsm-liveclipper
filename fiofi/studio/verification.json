@@ -1,0 +1,104 @@
+{
+  "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
+  "purpose": "Visual proposal only; manufacturing sources untouched",
+  "edge_radius_mm": 2.0,
+  "full_perimeter_protrusion_mm": 3.0,
+  "rear_heel_continuous_tangents": true,
+  "rear_heel_ellipse_center_yz": [
+    252.7707977294922,
+    66.0
+  ],
+  "rear_heel_ellipse_radii_yz": [
+    25.000015258789062,
+    68.0
+  ],
+  "base_and_feet_unchanged": true,
+  "sides": [
+    {
+      "part": "02_Fianco_SX",
+      "watertight": true,
+      "connected_solids": 1,
+      "removed_original_mm3": 4.221482023971133e-12,
+      "added_mm3": 8335.664522264771,
+      "added_intersection_with_R7_parts_mm3": {
+        "PSU12_RIFERIMENTO_NON_STAMPARE": 0.0,
+        "06_Retro_IO": 0.0,
+        "09_Console_schermo": 0.0,
+        "29_Retro_a_L": 0.0,
+        "27L_Fermo_INF_1": 0.0,
+        "27L_Fermo_INF_2": 0.0,
+        "27L_Fermo_SUP_2": 0.0,
+        "27L_Fermo_SUP_1": 0.0,
+        "01_Base": 0.0,
+        "04_Frontale": 0.0,
+        "08_Deck": 0.0,
+        "15_Placca_L": 0.0,
+        "12_Supporto_jog": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0,
+        "18_Piedino_1su4": 0.0,
+        "18_Piedino_2su4": 0.0,
+        "18_Piedino_3su4": 0.0,
+        "18_Piedino_4su4": 0.0,
+        "20_Vassoio_LSM_T": 0.0,
+        "DISPLAY_RIFERIMENTO": 0.0
+      },
+      "table_clearance_mm": 7.0,
+      "bounds": [
+        [
+          0.0,
+          -3.0,
+          -5.0
+        ],
+        [
+          7.0,
+          280.77081298828125,
+          159.23829650878906
+        ]
+      ]
+    },
+    {
+      "part": "02_Fianco_DX",
+      "watertight": true,
+      "connected_solids": 1,
+      "removed_original_mm3": 2.2239434703590352e-12,
+      "added_mm3": 8335.668226684229,
+      "added_intersection_with_R7_parts_mm3": {
+        "PSU12_RIFERIMENTO_NON_STAMPARE": 0.0,
+        "06_Retro_IO": 0.0,
+        "09_Console_schermo": 0.0,
+        "29_Retro_a_L": 1.1102230246251565e-16,
+        "27L_Fermo_INF_1": 0.0,
+        "27L_Fermo_INF_2": 0.0,
+        "27L_Fermo_SUP_2": 0.0,
+        "27L_Fermo_SUP_1": 0.0,
+        "01_Base": 0.0,
+        "04_Frontale": 1.8756320389639903e-22,
+        "08_Deck": 0.0,
+        "15_Placca_L": 0.0,
+        "12_Supporto_jog": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0,
+        "18_Piedino_1su4": 0.0,
+        "18_Piedino_2su4": 0.0,
+        "18_Piedino_3su4": 0.0,
+        "18_Piedino_4su4": 0.0,
+        "20_Vassoio_LSM_T": 0.0,
+        "DISPLAY_RIFERIMENTO": 0.0
+      },
+      "table_clearance_mm": 7.0,
+      "bounds": [
+        [
+          223.0,
+          -3.0,
+          -5.0
+        ],
+        [
+          230.0,
+          280.77081298828125,
+          159.23829650878906
+        ]
+      ]
+    }
+  ]
+}
