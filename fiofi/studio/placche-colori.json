@@ -1,0 +1,6 @@
+{
+ "_nota": "scritto da fai_anteprima_pagina.py da colori_placche.json: colori di base delle placchette; scritte nere = nera, bianche = bianca",
+ "bianca": "#ffffff",
+ "grigia": "#616f7e",
+ "nera": "#13171d"
+}

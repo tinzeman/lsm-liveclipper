@@ -1,0 +1,17 @@
+{
+ "_nota": "scritto da fai_grana_polvere.py: mappa delle normali dalla foto JLCCNC della polvere nera opaca; scala da CONFERMARE (ipotesi campione 60 mm)",
+ "px": [
+  764,
+  254
+ ],
+ "mm": [
+  54.31,
+  18.06
+ ],
+ "px_mm": 14.067,
+ "campione_mm_ipotesi": 60.0,
+ "ripetizione_uv_stampa": [
+  0.2946,
+  0.8861
+ ]
+}
