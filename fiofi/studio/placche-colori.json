@@ -1,66 +1,14 @@
 {
- "_nota": "scritto da fai_anteprima_pagina.py da colori_placche.json: per ogni colore la base della pagina, il colore JLCCNC (obiettivo, per i pallini), le scritte (nere = base della nera, bianche = base della bianca) e la finitura",
+ "_nota": "scritto da fai_anteprima_pagina.py da colori_placche.json: per ogni colore la base della pagina, il colore JLCCNC (obiettivo, per i pallini), le scritte (col colore dell'inchiostro) e la finitura",
+ "inchiostri": {
+  "nere": "#13171d",
+  "bianche": "#ffffff"
+ },
  "colori": {
-  "bianca": {
-   "nome": "Bianca",
-   "base": "#ffffff",
-   "obiettivo": "#edeef1",
-   "scritte": "nere",
-   "finitura": "polvere opaca"
-  },
-  "grigia": {
-   "nome": "Grigia",
-   "base": "#616f7e",
-   "obiettivo": "#93a5b3",
-   "scritte": "bianche",
-   "finitura": "polvere opaca"
-  },
-  "nera": {
-   "nome": "Nera",
-   "base": "#13171d",
-   "obiettivo": "#343639",
-   "scritte": "bianche",
-   "finitura": "polvere opaca"
-  },
-  "rossa": {
-   "nome": "Rossa",
-   "base": "#b90502",
-   "obiettivo": "#e43b30",
-   "scritte": "bianche",
-   "finitura": "polvere lucida"
-  },
-  "gialla": {
-   "nome": "Gialla",
-   "base": "#f3a900",
-   "obiettivo": "#fbd700",
-   "scritte": "nere",
-   "finitura": "polvere lucida"
-  },
-  "blu": {
-   "nome": "Blu",
-   "base": "#004c9a",
-   "obiettivo": "#006bbf",
-   "scritte": "bianche",
-   "finitura": "polvere opaca"
-  },
-  "verde": {
-   "nome": "Verde",
-   "base": "#036363",
-   "obiettivo": "#068282",
-   "scritte": "bianche",
-   "finitura": "polvere opaca"
-  },
-  "grigio-scuro-hc": {
-   "nome": "Grigio scuro",
-   "base": "#272528",
-   "obiettivo": "#4d4d4c",
-   "scritte": "bianche",
-   "finitura": "anodizzato duro"
-  },
   "nero-hc": {
    "nome": "Nera",
-   "base": "#151b26",
-   "obiettivo": "#3e4449",
+   "base": "#292d31",
+   "obiettivo": "#383f45",
    "scritte": "bianche",
    "finitura": "anodizzato duro"
   }

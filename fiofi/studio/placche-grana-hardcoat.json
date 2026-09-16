@@ -1,0 +1,17 @@
+{
+ "_nota": "scritto da fai_grana_hardcoat.py: mappa delle normali dalla foto JLCCNC dell'anodizzato duro nero (Shanice 16/09); scala da CONFERMARE (ipotesi campione 60 mm)",
+ "px": [
+  434,
+  143
+ ],
+ "mm": [
+  50.66,
+  16.69
+ ],
+ "px_mm": 8.567,
+ "campione_mm_ipotesi": 60.0,
+ "ripetizione_uv_stampa": [
+  0.3158,
+  0.9585
+ ]
+}
