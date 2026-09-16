@@ -1,0 +1,10 @@
+{
+  "13C": {
+    "shortened_by_mm": 2.0,
+    "height_mm": 15.600000000000001,
+    "starts_at_deck_plus_mm": 2.7,
+    "removed_inside_protected_mm3": 0.0,
+    "watertight": true
+  },
+  "13D_13E": "copied from jog-tpu-options.glb unchanged"
+}

@@ -1,0 +1,35 @@
+{
+  "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
+  "purpose": "Visual preview of JOG_3VITI_R7 (3-screw cap, wheel with 3 insert seats); no manufacturing files changed",
+  "wheel": {
+    "stl": "/Users/sebastiano/Desktop/LSM_Liveclipper/PEZZI_DEFINITIVI/JOG_3VITI_R7/13T_Ruota_jog_3viti.stl",
+    "stl_sha256": "cf1838bb852f68bfc84a911cd0ec074e1e5d8c70085de5d3276b31d6b6484d33",
+    "grip_crest_radius_mm": 0.3,
+    "crest_rounding_from_z_mm": 0.0,
+    "removed_mm3": 0.4126221738271796,
+    "bounds_local": [
+      [
+        -29.0,
+        -29.0,
+        -6.0
+      ],
+      [
+        29.0,
+        29.0,
+        17.000009536743164
+      ]
+    ]
+  },
+  "jog_shift_mm": -14.999999999999993,
+  "cap": {
+    "stl": "/Users/sebastiano/Desktop/LSM_Liveclipper/PEZZI_DEFINITIVI/JOG_3VITI_R7/13BR_Tappo_jog_3viti.stl",
+    "stl_sha256": "574297e28e819acda8497d445eafeeb2df6595332c2a3aaab2c593904a8ce23b",
+    "screws": 3,
+    "screw_angles_deg": [
+      60,
+      180,
+      300
+    ],
+    "screw_radius_mm": 22
+  }
+}

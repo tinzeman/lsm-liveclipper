@@ -1,0 +1,35 @@
+{
+  "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
+  "purpose": "Visual preview of JOG_ANELLO_R7 (ring on the wheel, 3-screw cap); no manufacturing files changed",
+  "wheel": {
+    "stl": "/Users/sebastiano/Desktop/LSM_Liveclipper/PEZZI_DEFINITIVI/JOG_ANELLO_R7/13R_Ruota_jog_anello.stl",
+    "stl_sha256": "01def1fdffe18fd59b8244a7e788143cdfc2e4e4996f720f6d22a4e89baa6dc1",
+    "grip_crest_radius_mm": 0.3,
+    "crest_rounding_from_z_mm": 2.4,
+    "removed_mm3": 0.3342473800060256,
+    "ring_touched_mm3": 9.73846862901308e-07,
+    "bounds_local": [
+      [
+        -34.30000019073486,
+        -34.30000019073486,
+        -6.0
+      ],
+      [
+        34.29999923706055,
+        34.29999923706055,
+        17.000009536743164
+      ]
+    ]
+  },
+  "cap": {
+    "stl": "/Users/sebastiano/Desktop/LSM_Liveclipper/PEZZI_DEFINITIVI/JOG_ANELLO_R7/13BR_Tappo_jog_3viti.stl",
+    "stl_sha256": "574297e28e819acda8497d445eafeeb2df6595332c2a3aaab2c593904a8ce23b",
+    "screws": 3,
+    "screw_angles_deg": [
+      60,
+      180,
+      300
+    ],
+    "screw_radius_mm": 22
+  }
+}

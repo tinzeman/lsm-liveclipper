@@ -1,0 +1,204 @@
+{
+  "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
+  "note": "Visible head and conical neck only. Existing bores and manufacturing files unchanged.",
+  "fasteners": [
+    {
+      "name": "jog-cap_1",
+      "parent": "jog-cap",
+      "size": "M3",
+      "head_diameter_mm": 6.2,
+      "surface_center": [
+        191.0,
+        95.92274944967284,
+        99.0042633392034
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13B_Tappo_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "jog-cap_2",
+      "parent": "jog-cap",
+      "size": "M3",
+      "head_diameter_mm": 6.2,
+      "surface_center": [
+        158.0,
+        77.13148495067554,
+        95.85968411000215
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13B_Tappo_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "jog-cap_3",
+      "parent": "jog-cap",
+      "size": "M3",
+      "head_diameter_mm": 6.2,
+      "surface_center": [
+        191.0,
+        58.340220451678256,
+        92.7151048808009
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13B_Tappo_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "jog-motor_1",
+      "parent": "jog",
+      "size": "M2.5",
+      "head_diameter_mm": 4.8,
+      "surface_center": [
+        190.0,
+        80.3350589804313,
+        76.71588058416448
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13_Ruota_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "jog-motor_2",
+      "parent": "jog",
+      "size": "M2.5",
+      "head_diameter_mm": 4.8,
+      "surface_center": [
+        180.0,
+        90.19791499580361,
+        78.36635664277125
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13_Ruota_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "jog-motor_3",
+      "parent": "jog",
+      "size": "M2.5",
+      "head_diameter_mm": 4.8,
+      "surface_center": [
+        170.0,
+        80.3350589804313,
+        76.71588058416448
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13_Ruota_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "jog-motor_4",
+      "parent": "jog",
+      "size": "M2.5",
+      "head_diameter_mm": 4.8,
+      "surface_center": [
+        180.0,
+        70.47220296505898,
+        75.06540452555771
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13_Ruota_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "tbar_1",
+      "parent": "tbar",
+      "size": "M3",
+      "head_diameter_mm": 5.52,
+      "surface_center": [
+        59.17,
+        42.851253063573914,
+        72.47612242627784
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "08_Deck",
+      "intersections_mm3": {
+        "08_Deck": 0.010103710600086578,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "tbar_2",
+      "parent": "tbar",
+      "size": "M3",
+      "head_diameter_mm": 5.52,
+      "surface_center": [
+        59.17,
+        107.1570742838014,
+        83.23722632839402
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "08_Deck",
+      "intersections_mm3": {
+        "08_Deck": 0.01010136680797735,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    }
+  ]
+}
