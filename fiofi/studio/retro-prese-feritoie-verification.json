@@ -98,7 +98,7 @@
     "01_old_node_was_solid_there": true,
     "01_rest_of_the_base_identical_ray_by_ray": true,
     "connectors_modules_found_where_the_old_holes_were": true,
-    "connectors_hdmi_body_has_the_opening_14x4.55": true,
+    "connectors_hdmi_trapezoid_opening_in_a_metal_shell": true,
     "connectors_iec_inlet_identical_triangles": true,
     "connectors_bodies_centred_on_the_new_holes": true,
     "connectors_bodies_fit_inside_the_D_holes_r12": true,
