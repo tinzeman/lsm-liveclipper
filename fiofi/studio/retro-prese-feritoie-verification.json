@@ -102,7 +102,7 @@
     "connectors_iec_inlet_identical_triangles": true,
     "connectors_bodies_centred_on_the_new_holes": true,
     "connectors_bodies_fit_inside_the_D_holes_r12": true,
-    "connectors_second_usb_in_the_4th_hole_with_its_tongue": true,
+    "connectors_layout_USB_USB_RJ45_HDMI_on_the_four_holes": true,
     "connectors_flanges_behind_the_panel_like_the_cad": true,
     "06_Retro_IO_glb_read_back_same_bounds_and_volume": true,
     "29_Retro_a_L_glb_read_back_same_bounds_and_volume": true,
