@@ -1,0 +1,28 @@
+{
+  "purpose": "Jog option 2 on the studio page; manufacturing files unchanged",
+  "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
+  "jog_shift_mm": -14.999999999999993,
+  "stl": {
+    "13TZ_Ruota_jog_3viti_zigrinata.stl": "6bab75b36df486cbef1f296b3c1ddfa8daeb230cf68550376855ad43949d5bb7",
+    "13BR_Tappo_jog_3viti.stl": "574297e28e819acda8497d445eafeeb2df6595332c2a3aaab2c593904a8ce23b"
+  },
+  "screws": [
+    "jog-cap_1",
+    "jog-cap_2",
+    "jog-cap_3"
+  ],
+  "checks": {
+    "wheel_rmax_30": true,
+    "wheel_top_17_like_13T": true,
+    "hub_bottom_same_as_3viti": true,
+    "cap_same_place_as_3viti_page_cap": true,
+    "cap_top_0.1_below_wheel_top": true,
+    "three_cap_screws_at_r22_60_180_300": true,
+    "screw_heads_flush_with_cap_top": true
+  },
+  "measured": {
+    "wheel_rmax": 30.000008497287148,
+    "cap_rmax": 27.00000777810821,
+    "wheel_top_minus_cap_top": 0.10000734727117333
+  }
+}
