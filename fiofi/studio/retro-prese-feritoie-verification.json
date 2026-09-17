@@ -1,0 +1,112 @@
+{
+  "purpose": "06Q 4 sockets + vent slots on 29V and 01V on the studio page; manufacturing files unchanged",
+  "manufactured_surfaces_sha256": "83fd7c0d7196183f1226a418fdd1abcfe9e7f8ba2215309d0501cbae5ac10746",
+  "connectors_sha256": "12eda2ed5445809d2e0043d4658ab23e4c271b855077ce3e698ed8755eb67c9c",
+  "parts": {
+    "06_Retro_IO": {
+      "stl": "06Q_Retro_IO_4prese.stl",
+      "stl_sha256": "5be4b926840a6210a22fc768979485a8c2da003f055af4204d22a53fe66bcc19",
+      "approved": "06_Retro_IO.stl",
+      "approved_sha256": "ea27da045019d5dca0d99fbd244640e19645d2f7e28df84eff1ac31a6e3c46b5",
+      "placement_residual_mm": 1.7905676941154525e-12,
+      "mirror": false,
+      "bounds": [
+        [
+          4.0,
+          236.77000427245986,
+          4.0
+        ],
+        [
+          225.99999999999827,
+          252.77000427246094,
+          61.75000000000056
+        ]
+      ],
+      "zero_area_triangles_dropped": 698,
+      "volume_cm3": 82.90569695079371,
+      "old_volume_cm3": 85.72899745758006
+    },
+    "29_Retro_a_L": {
+      "stl": "29V_Retro_a_L_feritoie.stl",
+      "stl_sha256": "f6c9932c28c1346685c9feb3e4abc2d0ff7033b6b3ccaaf995814daab73155a1",
+      "approved": "29_Retro_a_L.stl",
+      "approved_sha256": "3d0edcd74eef25533e856f0fdc02837d6d151d33057d45962d501a6ca3111921",
+      "placement_residual_mm": 2.2737367544323206e-12,
+      "mirror": false,
+      "bounds": [
+        [
+          4.0,
+          238.77000427245866,
+          61.75
+        ],
+        [
+          226.00000000000037,
+          277.77099609375,
+          152.00000000000028
+        ]
+      ],
+      "zero_area_triangles_dropped": 0,
+      "volume_cm3": 129.05086331489653,
+      "old_volume_cm3": 131.70996208202456
+    },
+    "01_Base": {
+      "stl": "01V_Base_feritoie.stl",
+      "stl_sha256": "08a2ee4121ffa65003026c1d31e149a36ccece9f1a4b04396f40cf5968bcd2ae",
+      "approved": "01_Base.stl",
+      "approved_sha256": "c073ce0e97936a37076725c5e99f466a6a28f525c1a306402376b74d9bc2bbfa",
+      "placement_residual_mm": 7.626225652757057e-06,
+      "mirror": false,
+      "bounds": [
+        [
+          4.0,
+          4.000000001058567,
+          -2.0
+        ],
+        [
+          226.0,
+          252.77000427246094,
+          14.00000000000006
+        ]
+      ],
+      "zero_area_triangles_dropped": 0,
+      "volume_cm3": 339.692819171562,
+      "old_volume_cm3": 344.4951429497083
+    }
+  },
+  "checks": {
+    "06_Retro_IO_approved_and_new_files_are_the_verified_ones": true,
+    "06_Retro_IO_placement_solved_exactly": true,
+    "06_Retro_IO_same_bounds_as_the_page_node": true,
+    "06_Retro_IO_watertight_positive_volume": true,
+    "29_Retro_a_L_approved_and_new_files_are_the_verified_ones": true,
+    "29_Retro_a_L_placement_solved_exactly": true,
+    "29_Retro_a_L_same_bounds_as_the_page_node": true,
+    "29_Retro_a_L_watertight_positive_volume": true,
+    "01_Base_approved_and_new_files_are_the_verified_ones": true,
+    "01_Base_placement_solved_exactly": true,
+    "01_Base_same_bounds_as_the_page_node": true,
+    "01_Base_watertight_positive_volume": true,
+    "06_four_D_holes_clear_to_r11.3_at_x_110_140_170_200": true,
+    "06_old_node_had_material_in_at_least_two_of_those_holes": true,
+    "06_old_node_had_its_two_holes_at_150_190": true,
+    "06_old_vent_slots_closed_around_the_4th_hole": true,
+    "06_left_part_with_the_IEC_inlet_identical_ray_by_ray": true,
+    "29_sixteen_slots_open_through_the_wall": true,
+    "29_old_node_was_solid_there": true,
+    "29_rest_of_the_wall_identical_ray_by_ray": true,
+    "01_eight_slots_open_through_the_floor": true,
+    "01_old_node_was_solid_there": true,
+    "01_rest_of_the_base_identical_ray_by_ray": true,
+    "connectors_modules_found_where_the_old_holes_were": true,
+    "connectors_hdmi_body_has_the_opening_14x4.55": true,
+    "connectors_iec_inlet_identical_triangles": true,
+    "connectors_bodies_centred_on_the_new_holes": true,
+    "connectors_bodies_fit_inside_the_D_holes_r12": true,
+    "connectors_nothing_in_the_4th_hole": true,
+    "connectors_flanges_behind_the_panel_like_the_cad": true,
+    "06_Retro_IO_glb_read_back_same_bounds_and_volume": true,
+    "29_Retro_a_L_glb_read_back_same_bounds_and_volume": true,
+    "01_Base_glb_read_back_same_bounds_and_volume": true,
+    "connectors_stl_read_back_same_bounds": true
+  }
+}
