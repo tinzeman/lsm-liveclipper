@@ -3,9 +3,9 @@
   "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
   "jog_shift_mm": -14.999999999999993,
   "stl": {
-    "13E_Ruota_jog_EVS_v3.stl": "3b29cbf5897928251452436ab4fadc1352411c72c629ab248c9d4ec34273c9f5",
+    "13E_Ruota_jog_EVS_v4.stl": "6843fabeab867b2b8e08566b0e6aa67df80046d602952a92d1bd1e3ab7789f4d",
     "13EM_Tappo_jog_v2.stl": "4712850f05e8ae50145f664a87c59838b0fb2471e51e6d1cf9ad2df66014ab5c",
-    "13EA_Anello_jog_TPU_v3.stl": "378072f730361b85523dd493e81e30635424e442a20928d0604d3f00762fcc0b"
+    "13EA_Anello_jog_TPU_v4.stl": "d893bd6a5ebad2062e40a98c4126ba386dbf951bcb76e5987b4ffd4f437a446b"
   },
   "ring_mounted": {
     "K": 0.9860627177700348,
@@ -23,7 +23,7 @@
   "checks": {
     "wheel_rmax_30": true,
     "cap_rmax_27": true,
-    "ring_rmax_30.2": true,
+    "ring_rmax_30.0_flush_with_crests": true,
     "same_axis_as_approved_3viti_wheel": true,
     "hub_bottom_same_as_3viti": true,
     "ring_top_minus_wheel_top_1.4": true,
@@ -34,8 +34,8 @@
   "measured": {
     "wheel_rmax": 29.998058790655154,
     "cap_rmax": 27.00000852757899,
-    "ring_rmax": 30.200013440625966,
-    "ring_top_over_wheel_top": 1.3999994868126109,
+    "ring_rmax": 30.000027072782622,
+    "ring_top_over_wheel_top": 1.3999991280447261,
     "cap_top_over_wheel_top": 1.3999998510766503
   }
 }
