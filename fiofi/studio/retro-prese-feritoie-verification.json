@@ -26,8 +26,8 @@
       "old_volume_cm3": 85.72899745758006
     },
     "29_Retro_a_L": {
-      "stl": "29V_Retro_a_L_feritoie.stl",
-      "stl_sha256": "f6c9932c28c1346685c9feb3e4abc2d0ff7033b6b3ccaaf995814daab73155a1",
+      "stl": "29W_Retro_a_L_feritoie_nervatura_centrale.stl",
+      "stl_sha256": "a42944e387f47a28227a60f8dc92ef54ed11501f7350cfb83d88bc7bbfa7a92d",
       "approved": "29_Retro_a_L.stl",
       "approved_sha256": "3d0edcd74eef25533e856f0fdc02837d6d151d33057d45962d501a6ca3111921",
       "placement_residual_mm": 2.2737367544323206e-12,
@@ -44,8 +44,8 @@
           152.00000000000028
         ]
       ],
-      "zero_area_triangles_dropped": 0,
-      "volume_cm3": 129.05086331489653,
+      "zero_area_triangles_dropped": 52,
+      "volume_cm3": 123.85880887153675,
       "old_volume_cm3": 131.70996208202456
     },
     "01_Base": {
@@ -92,6 +92,7 @@
     "06_left_part_with_the_IEC_inlet_identical_ray_by_ray": true,
     "29_sixteen_slots_open_through_the_wall": true,
     "29_old_node_was_solid_there": true,
+    "29_end_ribs_x28_x215_removed_centre_rib_x78_kept": true,
     "29_rest_of_the_wall_identical_ray_by_ray": true,
     "01_eight_slots_open_through_the_floor": true,
     "01_old_node_was_solid_there": true,
