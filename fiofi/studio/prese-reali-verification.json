@@ -1,0 +1,146 @@
+{
+  "purpose": "real D-type modules (Seba photos 17/09) mounted on the 06Q, one STL per material",
+  "layout_seen_from_behind_left_to_right": {
+    "USB_1": [
+      "usb",
+      200.0
+    ],
+    "USB_2": [
+      "usb",
+      170.0
+    ],
+    "RETE": [
+      "rj45",
+      140.0
+    ],
+    "HDMI": [
+      "hdmi",
+      110.0
+    ]
+  },
+  "points_inside_06Q": 0,
+  "points_tested_against_06Q": 3469,
+  "assembly_hits": {},
+  "checks": {
+    "panel_06Q_placed_like_the_page": true,
+    "USB_1_usb_flange_26x31_sits_on_the_outer_face": true,
+    "USB_1_usb_body_inside_the_D_hole": true,
+    "USB_1_usb_depth_behind_the_panel_like_the_drawing": true,
+    "USB_1_usb_socket_open_from_outside": true,
+    "USB_1_usb_closed_solid": true,
+    "USB_2_usb_flange_26x31_sits_on_the_outer_face": true,
+    "USB_2_usb_body_inside_the_D_hole": true,
+    "USB_2_usb_depth_behind_the_panel_like_the_drawing": true,
+    "USB_2_usb_socket_open_from_outside": true,
+    "USB_2_usb_closed_solid": true,
+    "RETE_rj45_flange_26x31_sits_on_the_outer_face": true,
+    "RETE_rj45_body_inside_the_D_hole": true,
+    "RETE_rj45_depth_behind_the_panel_like_the_drawing": true,
+    "RETE_rj45_socket_open_from_outside": true,
+    "RETE_rj45_closed_solid": true,
+    "HDMI_hdmi_flange_26x31_sits_on_the_outer_face": true,
+    "HDMI_hdmi_body_inside_the_D_hole": true,
+    "HDMI_hdmi_depth_behind_the_panel_like_the_drawing": true,
+    "HDMI_hdmi_socket_open_from_outside": true,
+    "HDMI_hdmi_closed_solid": true,
+    "RETE_rj45_8_gold_contact_springs_inside_the_socket": true,
+    "two_blue_USB3_tongues_at_x_200_and_170": true,
+    "hdmi_metal_shell_at_x_110": true,
+    "raised_labels_USB3.0_and_CAT6_only_on_those_modules": true,
+    "no_module_screw_or_nut_inside_the_06Q": true,
+    "enough_points_tested_against_06Q": true,
+    "nothing_inside_the_other_assembly_parts_or_the_5V_supply": true,
+    "iec_inlet_same_triangles_10_rocker_faces_inside": true,
+    "files_read_back": true
+  },
+  "prese-plastica.stl": {
+    "triangles": 26004,
+    "bounds": [
+      [
+        97.0,
+        226.3699951171875,
+        17.5
+      ],
+      [
+        213.0,
+        255.4199981689453,
+        48.5
+      ]
+    ]
+  },
+  "prese-metallo.stl": {
+    "triangles": 112,
+    "bounds": [
+      [
+        102.6500015258789,
+        243.57000732421875,
+        29.489999771118164
+      ],
+      [
+        206.60000610351562,
+        255.1199951171875,
+        35.625
+      ]
+    ]
+  },
+  "prese-blu.stl": {
+    "triangles": 24,
+    "bounds": [
+      [
+        164.4499969482422,
+        243.57000732421875,
+        32.54999923706055
+      ],
+      [
+        205.5500030517578,
+        254.07000732421875,
+        34.400001525878906
+      ]
+    ]
+  },
+  "prese-oro.stl": {
+    "triangles": 420,
+    "bounds": [
+      [
+        105.3499984741211,
+        246.4974822998047,
+        32.43000030517578
+      ],
+      [
+        204.1999969482422,
+        254.07000732421875,
+        35.75
+      ]
+    ]
+  },
+  "prese-viti.stl": {
+    "triangles": 3424,
+    "bounds": [
+      [
+        97.32499694824219,
+        245.1699981689453,
+        18.049999237060547
+      ],
+      [
+        212.6750030517578,
+        254.82000732421875,
+        47.95000076293945
+      ]
+    ]
+  },
+  "prese-interno.stl": {
+    "triangles": 346,
+    "bounds": [
+      [
+        102.66999816894531,
+        226.38999938964844,
+        26.200000762939453
+      ],
+      [
+        206.5800018310547,
+        255.25,
+        35.70000076293945
+      ]
+    ]
+  }
+}

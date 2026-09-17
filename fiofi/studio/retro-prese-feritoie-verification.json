@@ -1,7 +1,6 @@
 {
   "purpose": "06Q 4 sockets + vent slots on 29V and 01V on the studio page; manufacturing files unchanged",
   "manufactured_surfaces_sha256": "83fd7c0d7196183f1226a418fdd1abcfe9e7f8ba2215309d0501cbae5ac10746",
-  "connectors_sha256": "12eda2ed5445809d2e0043d4658ab23e4c271b855077ce3e698ed8755eb67c9c",
   "parts": {
     "06_Retro_IO": {
       "stl": "06Q_Retro_IO_4prese.stl",
@@ -97,16 +96,8 @@
     "01_eight_slots_open_through_the_floor": true,
     "01_old_node_was_solid_there": true,
     "01_rest_of_the_base_identical_ray_by_ray": true,
-    "connectors_modules_found_where_the_old_holes_were": true,
-    "connectors_hdmi_trapezoid_opening_in_a_metal_shell": true,
-    "connectors_iec_inlet_identical_triangles": true,
-    "connectors_bodies_centred_on_the_new_holes": true,
-    "connectors_bodies_fit_inside_the_D_holes_r12": true,
-    "connectors_layout_USB_USB_RJ45_HDMI_on_the_four_holes": true,
-    "connectors_flanges_behind_the_panel_like_the_cad": true,
     "06_Retro_IO_glb_read_back_same_bounds_and_volume": true,
     "29_Retro_a_L_glb_read_back_same_bounds_and_volume": true,
-    "01_Base_glb_read_back_same_bounds_and_volume": true,
-    "connectors_stl_read_back_same_bounds": true
+    "01_Base_glb_read_back_same_bounds_and_volume": true
   }
 }
