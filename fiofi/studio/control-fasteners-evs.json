@@ -1,0 +1,138 @@
+{
+  "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
+  "note": "Visible head and conical neck only. Existing bores and manufacturing files unchanged. 16/09 night: EVS-style jog, the cap is held by the TPU ring, no cap screws.",
+  "fasteners": [
+    {
+      "name": "jog-motor_1",
+      "parent": "jog",
+      "size": "M2.5",
+      "head_diameter_mm": 4.8,
+      "surface_center": [
+        190.0,
+        65.54077495737283,
+        74.24016649625432
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13_Ruota_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "jog-motor_2",
+      "parent": "jog",
+      "size": "M2.5",
+      "head_diameter_mm": 4.8,
+      "surface_center": [
+        180.0,
+        75.40363097274515,
+        75.89064255486109
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13_Ruota_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "jog-motor_3",
+      "parent": "jog",
+      "size": "M2.5",
+      "head_diameter_mm": 4.8,
+      "surface_center": [
+        170.0,
+        65.54077495737283,
+        74.24016649625432
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13_Ruota_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "jog-motor_4",
+      "parent": "jog",
+      "size": "M2.5",
+      "head_diameter_mm": 4.8,
+      "surface_center": [
+        180.0,
+        55.67791894200052,
+        72.58969043764755
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "13_Ruota_jog",
+      "intersections_mm3": {
+        "08_Deck": 0.0,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "tbar_1",
+      "parent": "tbar",
+      "size": "M3",
+      "head_diameter_mm": 5.52,
+      "surface_center": [
+        59.17,
+        42.851253063573914,
+        72.47612242627784
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "08_Deck",
+      "intersections_mm3": {
+        "08_Deck": 0.010103710600086578,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    },
+    {
+      "name": "tbar_2",
+      "parent": "tbar",
+      "size": "M3",
+      "head_diameter_mm": 5.52,
+      "surface_center": [
+        59.17,
+        107.1570742838014,
+        83.23722632839402
+      ],
+      "axis_out": [
+        0.0,
+        -0.16504760586067765,
+        0.9862856015372314
+      ],
+      "seat_part": "08_Deck",
+      "intersections_mm3": {
+        "08_Deck": 0.01010136680797735,
+        "13_Ruota_jog": 0.0,
+        "13B_Tappo_jog": 0.0
+      }
+    }
+  ]
+}
