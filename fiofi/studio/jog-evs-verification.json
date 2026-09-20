@@ -3,7 +3,7 @@
   "source_sha256": "0f60ca7d7dfd4572c68fd999b01c08d7cd431f4194ebc7871a6a7815282683b9",
   "jog_shift_mm": -14.999999999999993,
   "stl": {
-    "13E_Ruota_jog_EVS_v4.stl": "6843fabeab867b2b8e08566b0e6aa67df80046d602952a92d1bd1e3ab7789f4d",
+    "13E_Ruota_jog_EVS_v5.stl": "ce540add5cc8ac3264b18aadbd7bdcda80aeea83acb123cc31fc34e1b0b9b318",
     "13EM_Tappo_jog_v2.stl": "4712850f05e8ae50145f664a87c59838b0fb2471e51e6d1cf9ad2df66014ab5c",
     "13EA_Anello_jog_TPU_v4.stl": "d893bd6a5ebad2062e40a98c4126ba386dbf951bcb76e5987b4ffd4f437a446b"
   },
@@ -32,7 +32,7 @@
     "ring_9.2_tall": true
   },
   "measured": {
-    "wheel_rmax": 29.998058790655154,
+    "wheel_rmax": 29.9998505231433,
     "cap_rmax": 27.00000852757899,
     "ring_rmax": 30.000027072782622,
     "ring_top_over_wheel_top": 1.3999991280447261,
