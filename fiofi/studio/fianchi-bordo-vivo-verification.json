@@ -1,0 +1,88 @@
+{
+  "purpose": "sharp-inner-edge side panels on the studio page (proposal); cart and manufacturing files unchanged",
+  "manufactured_surfaces_sha256": "83fd7c0d7196183f1226a418fdd1abcfe9e7f8ba2215309d0501cbae5ac10746",
+  "parts": {
+    "02_Fianco_SX": {
+      "stl": "02_Fianco_SX_bordo_interno_vivo.stl",
+      "stl_sha256": "3e622bdcc2f0ca27163fd3db1fddf3e8e01c5d8e4118b00320724921662b6c58",
+      "approved_sha256": "d88a9b55c6f19140680ddcbdfd9e8c0c3ccb45e1b82a2b6f3c9623a23d817df9",
+      "placement_residual_mm": 1.3642420526593924e-12,
+      "mirror": false,
+      "old_bounds": [
+        [
+          0.0,
+          -3.0,
+          -5.0
+        ],
+        [
+          7.0,
+          280.77081298828125,
+          159.23829650878906
+        ]
+      ],
+      "new_bounds": [
+        [
+          -2.8791891253328976e-14,
+          -3.0000000000000284,
+          -5.000000000000098
+        ],
+        [
+          4.000000000000019,
+          280.7708129882799,
+          159.23829650878923
+        ]
+      ],
+      "volume_cm3": 115.61706410892482,
+      "old_volume_cm3": 131.0483010852005
+    },
+    "02_Fianco_DX": {
+      "stl": "02_Fianco_DX_bordo_interno_vivo.stl",
+      "stl_sha256": "4bd0114277c232c7df93cae368c63856db6c3a62e9ee65cd7eb901ede1d19467",
+      "approved_sha256": "d59db81af0edc6f8ef2888a9ff06892eca1760fa9590c698e29e0ebd8d1045ae",
+      "placement_residual_mm": 3.581135388230905e-12,
+      "mirror": false,
+      "old_bounds": [
+        [
+          223.0,
+          -3.0,
+          -5.0
+        ],
+        [
+          230.0,
+          280.77081298828125,
+          159.23829650878906
+        ]
+      ],
+      "new_bounds": [
+        [
+          225.99999999999665,
+          -3.000000000000046,
+          -5.000000000003524
+        ],
+        [
+          230.00000000000264,
+          280.7708129882786,
+          159.23829650879182
+        ]
+      ],
+      "volume_cm3": 115.61706103858972,
+      "old_volume_cm3": 131.0482893293624
+    }
+  },
+  "checks": {
+    "SX_placement_solved_exactly": true,
+    "SX_same_extent_in_y_and_z": true,
+    "SX_now_only_the_4mm_plate_in_x": true,
+    "SX_watertight_positive_volume_115.6cm3": true,
+    "SX_inner_face_flat_to_the_edge": true,
+    "SX_old_node_is_the_ribbed_131cm3": true,
+    "DX_placement_solved_exactly": true,
+    "DX_same_extent_in_y_and_z": true,
+    "DX_now_only_the_4mm_plate_in_x": true,
+    "DX_watertight_positive_volume_115.6cm3": true,
+    "DX_inner_face_flat_to_the_edge": true,
+    "DX_old_node_is_the_ribbed_131cm3": true,
+    "SX_glb_read_back_same_bounds_and_volume": true,
+    "DX_glb_read_back_same_bounds_and_volume": true
+  }
+}
