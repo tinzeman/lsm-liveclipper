@@ -32,9 +32,9 @@
     "ring_9.2_tall": true
   },
   "measured": {
-    "wheel_rmax": 29.9998505231433,
-    "cap_rmax": 27.00000852757899,
-    "ring_rmax": 30.000027072782622,
+    "wheel_rmax": 29.999850463867254,
+    "cap_rmax": 27.00000822300999,
+    "ring_rmax": 30.000026960746265,
     "ring_top_over_wheel_top": 1.3999991280447261,
     "cap_top_over_wheel_top": 1.3999998510766503
   }
